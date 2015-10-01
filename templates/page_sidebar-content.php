@@ -4,7 +4,7 @@
  *
  * Description: Page template with sidebar on the left-side
  *
- * @package DocBlock
+ * @package Decatur_2015
  */
 
 get_header(); ?>

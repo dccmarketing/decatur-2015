@@ -3,7 +3,7 @@
 /**
  * A class of helpful theme functions
  *
- * @package DocBlock
+ * @package Decatur_2015
  * @author Slushman <chris@slushman.com>
  */
 class decatur_2015_Actions_and_Filters {

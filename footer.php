@@ -6,7 +6,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
  *
- * @package DocBlock
+ * @package Decatur_2015
  */
 
 		?></div><!-- .wrap --><?php
