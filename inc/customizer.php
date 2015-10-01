@@ -50,10 +50,10 @@ class function_names_Customize {
 		$wp_customize->add_panel( 'theme_options',
 			array(
 				'capability'  		=> 'edit_theme_options',
-				'description'  		=> esc_html__( 'Options for Replace With Theme Name', 'text-domain' ),
+				'description'  		=> esc_html__( 'Options for Replace With Theme Name', 'decatur-2015' ),
 				'priority'  		=> 10,
 				'theme_supports'  	=> '',
-				'title'  			=> esc_html__( 'Theme Options', 'text-domain' ),
+				'title'  			=> esc_html__( 'Theme Options', 'decatur-2015' ),
 			)
 		);
 
@@ -63,10 +63,10 @@ class function_names_Customize {
 		$wp_customize->add_section( 'new_section',
 			array(
 				'capability' 	=> 'edit_theme_options',
-				'description' 	=> esc_html__( 'New Customizer Section', 'text-domain' ),
+				'description' 	=> esc_html__( 'New Customizer Section', 'decatur-2015' ),
 				'panel' 		=> 'theme_options',
 				'priority' 		=> 10,
-				'title' 		=> esc_html__( 'New Section', 'text-domain' )
+				'title' 		=> esc_html__( 'New Section', 'decatur-2015' )
 			)
 		);
 
@@ -85,8 +85,8 @@ class function_names_Customize {
 		$wp_customize->add_control(
 			'text_field',
 			array(
-				'description' 	=> esc_html__( '', 'text-domain' ),
-				'label'  	=> esc_html__( 'Text Field', 'text-domain' ),
+				'description' 	=> esc_html__( '', 'decatur-2015' ),
+				'label'  	=> esc_html__( 'Text Field', 'decatur-2015' ),
 				'section'  	=> 'new_section',
 				'settings' 	=> 'text_field',
 				'type' 		=> 'text'
@@ -107,8 +107,8 @@ class function_names_Customize {
 		$wp_customize->add_control(
 			'url_field',
 			array(
-				'description' 	=> esc_html__( '', 'text-domain' ),
-				'label' => esc_html__( 'URL Field', 'text-domain' ),
+				'description' 	=> esc_html__( '', 'decatur-2015' ),
+				'label' => esc_html__( 'URL Field', 'decatur-2015' ),
 				'section' => 'new_section',
 				'settings' => 'url_field',
 				'type' => 'url'
@@ -129,8 +129,8 @@ class function_names_Customize {
 		$wp_customize->add_control(
 			'email_field',
 			array(
-				'description' 	=> esc_html__( '', 'text-domain' ),
-				'label' => esc_html__( 'Email Field', 'text-domain' ),
+				'description' 	=> esc_html__( '', 'decatur-2015' ),
+				'label' => esc_html__( 'Email Field', 'decatur-2015' ),
 				'section' => 'new_section',
 				'settings' => 'email_field',
 				'type' => 'email'
@@ -149,8 +149,8 @@ class function_names_Customize {
 		$wp_customize->add_control(
 			'date_field',
 			array(
-				'description' 	=> esc_html__( '', 'text-domain' ),
-				'label' => esc_html__( 'Date Field', 'text-domain' ),
+				'description' 	=> esc_html__( '', 'decatur-2015' ),
+				'label' => esc_html__( 'Date Field', 'decatur-2015' ),
 				'section' => 'new_section',
 				'settings' => 'date_field',
 				'type' => 'date'
@@ -170,8 +170,8 @@ class function_names_Customize {
 		$wp_customize->add_control(
 			'checkbox_field',
 			array(
-				'description' 	=> esc_html__( '', 'text-domain' ),
-				'label' => esc_html__( 'Checkbox Field', 'text-domain' ),
+				'description' 	=> esc_html__( '', 'decatur-2015' ),
+				'label' => esc_html__( 'Checkbox Field', 'decatur-2015' ),
 				'section' => 'new_section',
 				'settings' => 'checkbox_field',
 				'type' => 'checkbox'
@@ -193,8 +193,8 @@ class function_names_Customize {
 		$wp_customize->add_control(
 			'password_field',
 			array(
-				'description' 	=> esc_html__( '', 'text-domain' ),
-				'label' => esc_html__( 'Password Field', 'text-domain' ),
+				'description' 	=> esc_html__( '', 'decatur-2015' ),
+				'label' => esc_html__( 'Password Field', 'decatur-2015' ),
 				'section' => 'new_section',
 				'settings' => 'password_field',
 				'type' => 'password'
@@ -216,12 +216,12 @@ class function_names_Customize {
 			'radio_field',
 			array(
 				'choices' => array(
-					'choice1' => esc_html__( 'Choice 1', 'text-domain' ),
-					'choice2' => esc_html__( 'Choice 2', 'text-domain' ),
-					'choice3' => esc_html__( 'Choice 3', 'text-domain' )
+					'choice1' => esc_html__( 'Choice 1', 'decatur-2015' ),
+					'choice2' => esc_html__( 'Choice 2', 'decatur-2015' ),
+					'choice3' => esc_html__( 'Choice 3', 'decatur-2015' )
 				),
-				'description' 	=> esc_html__( '', 'text-domain' ),
-				'label' => esc_html__( 'Radio Field', 'text-domain' ),
+				'description' 	=> esc_html__( '', 'decatur-2015' ),
+				'label' => esc_html__( 'Radio Field', 'decatur-2015' ),
 				'section' => 'new_section',
 				'settings' => 'radio_field',
 				'type' => 'radio'
@@ -243,12 +243,12 @@ class function_names_Customize {
 			'select_field',
 			array(
 				'choices' => array(
-					'choice1' => esc_html__( 'Choice 1', 'text-domain' ),
-					'choice2' => esc_html__( 'Choice 2', 'text-domain' ),
-					'choice3' => esc_html__( 'Choice 3', 'text-domain' )
+					'choice1' => esc_html__( 'Choice 1', 'decatur-2015' ),
+					'choice2' => esc_html__( 'Choice 2', 'decatur-2015' ),
+					'choice3' => esc_html__( 'Choice 3', 'decatur-2015' )
 				),
-				'description' 	=> esc_html__( '', 'text-domain' ),
-				'label' => esc_html__( 'Select Field', 'text-domain' ),
+				'description' 	=> esc_html__( '', 'decatur-2015' ),
+				'label' => esc_html__( 'Select Field', 'decatur-2015' ),
 				'section' => 'new_section',
 				'settings' => 'select_field',
 				'type' => 'select'
@@ -269,8 +269,8 @@ class function_names_Customize {
 		$wp_customize->add_control(
 			'textarea_field',
 			array(
-				'description' 	=> esc_html__( '', 'text-domain' ),
-				'label' => esc_html__( 'Textarea Field', 'text-domain' ),
+				'description' 	=> esc_html__( '', 'decatur-2015' ),
+				'label' => esc_html__( 'Textarea Field', 'decatur-2015' ),
 				'section' => 'new_section',
 				'settings' => 'textarea_field',
 				'type' => 'textarea'
@@ -291,7 +291,7 @@ class function_names_Customize {
 		$wp_customize->add_control(
 			'range_field',
 			array(
-				'description' 	=> esc_html__( '', 'text-domain' ),
+				'description' 	=> esc_html__( '', 'decatur-2015' ),
 				'input_attrs' => array(
 					'class' => 'range-field',
 					'max' => 100,
@@ -299,7 +299,7 @@ class function_names_Customize {
 					'step' => 1,
 					'style' => 'color: #020202'
 				),
-				'label' => esc_html__( 'Range Field', 'text-domain' ),
+				'label' => esc_html__( 'Range Field', 'decatur-2015' ),
 				'section' => 'new_section',
 				'settings' => 'range_field',
 				'type' => 'range'
@@ -320,8 +320,8 @@ class function_names_Customize {
 		$wp_customize->add_control(
 			'select_page_field',
 			array(
-				'description' 	=> esc_html__( '', 'text-domain' ),
-				'label' => esc_html__( 'Select Page', 'text-domain' ),
+				'description' 	=> esc_html__( '', 'decatur-2015' ),
+				'label' => esc_html__( 'Select Page', 'decatur-2015' ),
 				'section' => 'new_section',
 				'settings' => 'select_page_field',
 				'type' => 'dropdown-pages'
@@ -344,8 +344,8 @@ class function_names_Customize {
 				$wp_customize,
 				'color_field',
 				array(
-					'description' 	=> esc_html__( '', 'text-domain' ),
-					'label' => esc_html__( 'Color Field', 'text-domain' ),
+					'description' 	=> esc_html__( '', 'decatur-2015' ),
+					'label' => esc_html__( 'Color Field', 'decatur-2015' ),
 					'section' => 'new_section',
 					'settings' => 'color_field'
 				),
@@ -362,8 +362,8 @@ class function_names_Customize {
 				$wp_customize,
 				'file_upload',
 				array(
-					'description' 	=> esc_html__( '', 'text-domain' ),
-					'label' => esc_html__( 'File Upload', 'text-domain' ),
+					'description' 	=> esc_html__( '', 'decatur-2015' ),
+					'label' => esc_html__( 'File Upload', 'decatur-2015' ),
 					'section' => 'new_section',
 					'settings' => 'file_upload'
 				),
@@ -385,8 +385,8 @@ class function_names_Customize {
 				$wp_customize,
 				'image_upload',
 				array(
-					'description' 	=> esc_html__( '', 'text-domain' ),
-					'label' => esc_html__( 'Image Field', 'text-domain' ),
+					'description' 	=> esc_html__( '', 'decatur-2015' ),
+					'label' => esc_html__( 'Image Field', 'decatur-2015' ),
 					'section' => 'new_section',
 					'settings' => 'image_upload'
 				)
@@ -411,8 +411,8 @@ class function_names_Customize {
 				$wp_customize,
 				'media_upload',
 				array(
-					'description' 	=> esc_html__( '', 'text-domain' ),
-					'label' => esc_html__( 'Media Field', 'text-domain' ),
+					'description' 	=> esc_html__( '', 'decatur-2015' ),
+					'label' => esc_html__( 'Media Field', 'decatur-2015' ),
 					'mime_type' => '',
 					'section' => 'new_section',
 					'settings' => 'media_upload'
@@ -437,7 +437,7 @@ class function_names_Customize {
 				$wp_customize,
 				'cropped_image',
 				array(
-					'description' 	=> esc_html__( '', 'text-domain' ),
+					'description' 	=> esc_html__( '', 'decatur-2015' ),
 					'flex_height' => '',
 					'flex_width' => '',
 					'height' => '1080',

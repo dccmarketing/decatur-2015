@@ -29,7 +29,7 @@
 		the_content();
 
 		wp_link_pages( array(
-			'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'text-domain' ),
+			'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'decatur-2015' ),
 			'after'  => '</div>',
 		) );
 
