@@ -83,7 +83,7 @@ class decatur_2015_Actions_and_Filters {
 
 		wp_enqueue_style( 'dashicons' );
 		wp_enqueue_script( 'decatur-2015-search', get_template_directory_uri() . '/js/hidden-search.min.js', array(), '20150807', true );
-		// wp_enqueue_style( 'decatur-2015-fonts', fonts_url(), array(), null );
+		wp_enqueue_style( 'decatur-2015-fonts', fonts_url(), array(), null );
 
 	} // more_scripts_and_styles()
 
@@ -310,7 +310,7 @@ class decatur_2015_Actions_and_Filters {
 
 		$return 	= '';
 		$families 	= '';
-		$fonts[] 	= array( 'font' => 'Oxygen', 'weights' => '400,700', 'translate' => esc_html_x( 'on', 'Oxygen font: on or off', 'decatur-2015' ) );
+		$fonts[] 	= array( 'font' => 'Roboto Condensed', 'weights' => '400,700', 'translate' => esc_html_x( 'on', 'Roboto Condensed font: on or off', 'decatur-2015' ) );
 
 		foreach ( $fonts as $font ) {
 
