@@ -6,7 +6,7 @@
  * @package DocBlock
  * @author Slushman <chris@slushman.com>
  */
-class function_names_Themekit {
+class decatur_2015_Themekit {
 
 	/**
 	 * Constructor
@@ -339,7 +339,7 @@ class function_names_Themekit {
 /**
  * Make an instance so its ready to be used
  */
-$function_names_themekit = new function_names_Themekit();
+$decatur_2015_themekit = new decatur_2015_Themekit();
 
 /**
  * Prints whatever in a nice, readable format

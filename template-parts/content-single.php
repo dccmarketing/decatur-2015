@@ -17,7 +17,7 @@
 
 		?><div class="entry-meta"><?php
 
-			function_names_posted_on();
+			decatur_2015_posted_on();
 
 		?></div><!-- .entry-meta -->
 	</header><!-- .entry-header --><?php
@@ -39,7 +39,7 @@
 
 	?><footer class="entry-footer"><?php
 
-		function_names_entry_footer();
+		decatur_2015_entry_footer();
 
 	?></footer><!-- .entry-footer --><?php
 
