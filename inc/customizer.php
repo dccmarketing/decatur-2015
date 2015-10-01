@@ -11,7 +11,7 @@
  */
 
 /**
- * Replace With Theme Name Theme Customizer
+ * City of Decatur 2015 Theme Customizer
  *
  * Contains methods for customizing the theme customization screen.
  *
@@ -50,7 +50,7 @@ class decatur_2015_Customize {
 		$wp_customize->add_panel( 'theme_options',
 			array(
 				'capability'  		=> 'edit_theme_options',
-				'description'  		=> esc_html__( 'Options for Replace With Theme Name', 'decatur-2015' ),
+				'description'  		=> esc_html__( 'Options for City of Decatur 2015', 'decatur-2015' ),
 				'priority'  		=> 10,
 				'theme_supports'  	=> '',
 				'title'  			=> esc_html__( 'Theme Options', 'decatur-2015' ),
