@@ -39,39 +39,38 @@
 		} );
 	} );
 
-	wp.customize( 'text_field', function( value ) {
+	wp.customize( 'address_1', function( value ) {
 		value.bind( function( to ) {
-			$( '.entry-title' ).text( to );
+			$( '.address1' ).text( to );
 		} );
 	} );
 
-	// Doesn't work instantly, works after you go out of the field
-	wp.customize( 'url_field', function( value ) {
+	wp.customize( 'address_2', function( value ) {
 		value.bind( function( to ) {
-			$( '.entry-title a' ).attr( 'href', to );
+			$( '.address2' ).text( to );
 		} );
 	} );
 
-	// Doesn't work instantly, works after you go out of the field
-	wp.customize( 'email_field', function( value ) {
+	wp.customize( 'city', function( value ) {
 		value.bind( function( to ) {
-			$( '.entry-title' ).text( to );
-			//$( '.entry-title a' ).attr( 'href', 'mailto:'+to );
+			$( '.city' ).text( to );
 		} );
 	} );
 
-	wp.customize( 'date_field', function( value ) {
+	wp.customize( 'us_state', function( value ) {
 		value.bind( function( to ) {
-			$( '.entry-date' ).text( to );
+			$( '.state' ).text( to );
 		} );
 	} );
 
-	wp.customize( 'checkbox_field', function( value ) {
+	wp.customize( 'zip_code', function( value ) {
 		value.bind( function( to ) {
-			$( '.entry-date' ).style.display( 'none' );
-			if ( to ) {
-
-			}
+			$( '.zip' ).text( to );
+		} );
+	} );
+	wp.customize( 'phone_number', function( value ) {
+		value.bind( function( to ) {
+			$( '.phone-number' ).text( to );
 		} );
 	} );
 

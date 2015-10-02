@@ -31,8 +31,7 @@ global $decatur_2015_themekit;
 			<div class="site-info">
 				<div class="copyright">
 					<ul class="contact-info">
-						<li>
-							&copy <?php echo date( 'Y' );
+						<li>&copy <?php echo date( 'Y' );
 							?> <a href="<?php echo esc_url( get_admin_url(), 'decatur-2015' ); ?>"><?php
 								echo get_bloginfo( 'name' );
 							?></a>
@@ -42,7 +41,7 @@ global $decatur_2015_themekit;
 
 						if ( ! empty( $addy1 ) ) {
 
-							?><li><?php echo esc_html( $addy1, 'decatur-2015' ); ?></li><?php
+							?><li class="address1"><?php echo esc_html( $addy1, 'decatur-2015' ); ?></li><?php
 
 						}
 
@@ -50,7 +49,7 @@ global $decatur_2015_themekit;
 
 						if ( ! empty( $addy2 ) ) {
 
-							?><li><?php echo esc_html( $addy2, 'decatur-2015' ); ?></li><?php
+							?><li class="address2"><?php echo esc_html( $addy2, 'decatur-2015' ); ?></li><?php
 
 						}
 
@@ -60,13 +59,11 @@ global $decatur_2015_themekit;
 
 						if ( ! empty( $city ) && ! empty( $state ) && ! empty( $zip ) ) {
 
-							?><li><?php
-
-								echo esc_html( $city, 'decatur-2015' ) . ', ';
-								echo esc_html( $state, 'decatur-2015' ) . ' ';
-								echo esc_html( $zip, 'decatur-2015' );
-
-							?></li><?php
+							?><li>
+								<span class="city"><?php echo esc_html( $city, 'decatur-2015' ) . ', '; ?></span>
+								<span class="state"><?php echo esc_html( $state, 'decatur-2015' ) . ' '; ?></span>
+								<span class="zip"><?php echo esc_html( $zip, 'decatur-2015' ); ?></span>
+							</li><?php
 
 						}
 
@@ -74,7 +71,7 @@ global $decatur_2015_themekit;
 
 						if ( ! empty( $phone ) ) {
 
-							?><li><?php
+							?><li class="phone-number"><?php
 
 								esc_html_e( 'Phone: ', 'decatur-2015' );
 								echo $decatur_2015_themekit->make_phone_link( $phone );;

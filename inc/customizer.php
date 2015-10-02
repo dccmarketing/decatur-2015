@@ -779,7 +779,7 @@ class decatur_2015_Customize {
 	 */
 	public static function live_preview() {
 
-		wp_enqueue_script( 'decatur_2015_customizer', get_template_directory_uri() . '/js/customizer.js', array( 'jquery', 'customize-preview' ), '', true );
+		wp_enqueue_script( 'decatur_2015_customizer', get_template_directory_uri() . '/js/customizer.min.js', array( 'jquery', 'customize-preview' ), '', true );
 
 	} // live_preview()
 
