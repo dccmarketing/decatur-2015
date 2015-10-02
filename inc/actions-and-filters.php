@@ -83,7 +83,7 @@ class decatur_2015_Actions_and_Filters {
 
 		wp_enqueue_style( 'dashicons' );
 		wp_enqueue_script( 'decatur-2015-search', get_template_directory_uri() . '/js/hidden-search.min.js', array(), '20150807', true );
-		wp_enqueue_style( 'decatur-2015-fonts', fonts_url(), array(), null );
+		wp_enqueue_style( 'decatur-2015-fonts', $this->fonts_url(), array(), null );
 
 	} // more_scripts_and_styles()
 
