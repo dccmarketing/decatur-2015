@@ -168,11 +168,17 @@ class decatur_2015_Actions_and_Filters {
 	 * Inserts Google Tag manager code after body tag
 	 * @return 	mixed 		The inserted Google Tag Manager code
 	 */
-	public function analytics_code() { ?>
+	public function analytics_code() {
 
-		<!-- paste code here -->
+		$tag = get_theme_mod( 'tag_manager' );
 
-	<?php } // analytics_code()
+		if ( ! empty( $tag ) ) {
+
+			echo $tag;
+
+		}
+
+	} // analytics_code()
 
 	/**
 	 * Creates a style tag in the header with the background image

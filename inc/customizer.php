@@ -30,12 +30,14 @@ class decatur_2015_Customize {
 	*
 	* Existing sections:
 	*
-	* title_tagline - Site Identity
-	* colors - Colors
-	* header_image - Header Image
-	* background_image - Background Image
-	* nav - Navigation
-	* static_front_page - Static Front Page
+	* title_tagline 20 - Site Identity
+	* colors 40 - Colors
+	* header_image 60 - Header Image
+	* background_image 80 - Background Image
+	* nav 100 - Navigation
+	* widgets 110 - Widgets
+	* static_front_page 120 - Static Front Page
+	* default 160 - all others
 	*
 	* @access 		public
 	* @see 			add_action( 'customize_register', $func )
@@ -44,6 +46,273 @@ class decatur_2015_Customize {
 	* @since 		1.0.0
 	*/
 	public static function register( $wp_customize ) {
+
+		// Google Tag Manager Field
+		$wp_customize->add_setting(
+			'tag_manager',
+			array(
+				'default'  	=> '',
+				'transport' => 'postMessage'
+			)
+		);
+		$wp_customize->add_control(
+			'tag_manager',
+			array(
+				'description' 	=> esc_html__( 'Paste in the Google Tag Manager code here.', 'decatur-2015' ),
+				'label' => esc_html__( 'Google Tag Manager', 'decatur-2015' ),
+				'priority' => 90,
+				'section' => 'title_tagline',
+				'settings' => 'tag_manager',
+				'type' => 'textarea'
+			)
+		);
+		$wp_customize->get_setting( 'tag_manager' )->transport = 'postMessage';
+
+
+
+		// Theme Options Panel
+		$wp_customize->add_panel( 'theme_options',
+			array(
+				'capability'  		=> 'edit_theme_options',
+				'description'  		=> esc_html__( 'Options for City of Decatur 2015', 'decatur-2015' ),
+				'priority'  		=> 10,
+				'theme_supports'  	=> '',
+				'title'  			=> esc_html__( 'Theme Options', 'decatur-2015' ),
+			)
+		);
+
+
+
+		// Contact Info Section
+		$wp_customize->add_section( 'contact_info',
+			array(
+				'capability' 	=> 'edit_theme_options',
+				'description' 	=> esc_html__( 'Contact Info', 'decatur-2015' ),
+				'panel' 		=> 'theme_options',
+				'priority' 		=> 10,
+				'title' 		=> esc_html__( 'Contact Info', 'decatur-2015' )
+			)
+		);
+
+
+
+		// Contact Info Fields
+
+		// Address 1 Field
+		$wp_customize->add_setting(
+			'address_1',
+			array(
+				'default'  	=> '',
+				'transport' => 'postMessage'
+			)
+		);
+		$wp_customize->add_control(
+			'address_1',
+			array(
+				'description' 	=> esc_html__( '', 'decatur-2015' ),
+				'label'  	=> esc_html__( 'Address Line 1', 'decatur-2015' ),
+				'priority' => 200,
+				'section'  	=> 'contact_info',
+				'settings' 	=> 'address_1',
+				'type' 		=> 'text'
+			)
+		);
+		$wp_customize->get_setting( 'address_1' )->transport = 'postMessage';
+
+		// Address 2 Field
+		$wp_customize->add_setting(
+			'address_2',
+			array(
+				'default'  	=> '',
+				'transport' => 'postMessage'
+			)
+		);
+		$wp_customize->add_control(
+			'address_2',
+			array(
+				'description' 	=> esc_html__( '', 'decatur-2015' ),
+				'label'  	=> esc_html__( 'Address Line 2', 'decatur-2015' ),
+				'priority' => 210,
+				'section'  	=> 'contact_info',
+				'settings' 	=> 'address_2',
+				'type' 		=> 'text'
+			)
+		);
+		$wp_customize->get_setting( 'address_2' )->transport = 'postMessage';
+
+		// City Field
+		$wp_customize->add_setting(
+			'city',
+			array(
+				'default'  	=> '',
+				'transport' => 'postMessage'
+			)
+		);
+		$wp_customize->add_control(
+			'city',
+			array(
+				'description' 	=> esc_html__( '', 'decatur-2015' ),
+				'label'  	=> esc_html__( 'City', 'decatur-2015' ),
+				'priority' => 220,
+				'section'  	=> 'contact_info',
+				'settings' 	=> 'city',
+				'type' 		=> 'text'
+			)
+		);
+		$wp_customize->get_setting( 'city' )->transport = 'postMessage';
+
+		// US States Select Field
+		$wp_customize->add_setting(
+			'us_state',
+			array(
+				'default'  	=> 'choice1',
+				'transport' => 'postMessage'
+			)
+		);
+		$wp_customize->add_control(
+			'us_state',
+			array(
+				'choices' => array(
+					'AL' => esc_html__( 'Alabama', 'decatur-2015' ),
+					'AK' => esc_html__( 'Alaska', 'decatur-2015' ),
+					'AZ' => esc_html__( 'Arizona', 'decatur-2015' ),
+					'AR' => esc_html__( 'Arkansas', 'decatur-2015' ),
+					'CA' => esc_html__( 'California', 'decatur-2015' ),
+					'CO' => esc_html__( 'Colorado', 'decatur-2015' ),
+					'CT' => esc_html__( 'Connecticut', 'decatur-2015' ),
+					'DE' => esc_html__( 'Delaware', 'decatur-2015' ),
+					'DC' => esc_html__( 'District of Columbia', 'decatur-2015' ),
+					'FL' => esc_html__( 'Florida', 'decatur-2015' ),
+					'GA' => esc_html__( 'Georgia', 'decatur-2015' ),
+					'HI' => esc_html__( 'Hawaii', 'decatur-2015' ),
+					'ID' => esc_html__( 'Idaho', 'decatur-2015' ),
+					'IL' => esc_html__( 'Illinois', 'decatur-2015' ),
+					'IN' => esc_html__( 'Indiana', 'decatur-2015' ),
+					'IA' => esc_html__( 'Iowa', 'decatur-2015' ),
+					'KS' => esc_html__( 'Kansas', 'decatur-2015' ),
+					'KY' => esc_html__( 'Kentucky', 'decatur-2015' ),
+					'LA' => esc_html__( 'Louisiana', 'decatur-2015' ),
+					'ME' => esc_html__( 'Maine', 'decatur-2015' ),
+					'MD' => esc_html__( 'Maryland', 'decatur-2015' ),
+					'MA' => esc_html__( 'Massachusetts', 'decatur-2015' ),
+					'MI' => esc_html__( 'Michigan', 'decatur-2015' ),
+					'MN' => esc_html__( 'Minnesota', 'decatur-2015' ),
+					'MS' => esc_html__( 'Mississippi', 'decatur-2015' ),
+					'MO' => esc_html__( 'Missouri', 'decatur-2015' ),
+					'MT' => esc_html__( 'Montana', 'decatur-2015' ),
+					'NE' => esc_html__( 'Nebraska', 'decatur-2015' ),
+					'NV' => esc_html__( 'Nevada', 'decatur-2015' ),
+					'NH' => esc_html__( 'New Hampshire', 'decatur-2015' ),
+					'NJ' => esc_html__( 'New Jersey', 'decatur-2015' ),
+					'NM' => esc_html__( 'New Mexico', 'decatur-2015' ),
+					'NY' => esc_html__( 'New York', 'decatur-2015' ),
+					'NC' => esc_html__( 'North Carolina', 'decatur-2015' ),
+					'ND' => esc_html__( 'North Dakota', 'decatur-2015' ),
+					'OH' => esc_html__( 'Ohio', 'decatur-2015' ),
+					'OK' => esc_html__( 'Oklahoma', 'decatur-2015' ),
+					'OR' => esc_html__( 'Oregon', 'decatur-2015' ),
+					'PA' => esc_html__( 'Pennsylvania', 'decatur-2015' ),
+					'RI' => esc_html__( 'Rhode Island', 'decatur-2015' ),
+					'SC' => esc_html__( 'South Carolina', 'decatur-2015' ),
+					'SD' => esc_html__( 'South Dakota', 'decatur-2015' ),
+					'TN' => esc_html__( 'Tennessee', 'decatur-2015' ),
+					'TX' => esc_html__( 'Texas', 'decatur-2015' ),
+					'UT' => esc_html__( 'Utah', 'decatur-2015' ),
+					'VT' => esc_html__( 'Vermont', 'decatur-2015' ),
+					'VA' => esc_html__( 'Virginia', 'decatur-2015' ),
+					'WA' => esc_html__( 'Washington', 'decatur-2015' ),
+					'WV' => esc_html__( 'West Virginia', 'decatur-2015' ),
+					'WI' => esc_html__( 'Wisconsin', 'decatur-2015' ),
+					'WY' => esc_html__( 'Wyoming', 'decatur-2015' ),
+					'AS' => esc_html__( 'American Samoa', 'decatur-2015' ),
+					'AA' => esc_html__( 'Armed Forces America (except Canada)', 'decatur-2015' ),
+					'AE' => esc_html__( 'Armed Forces Africa/Canada/Europe/Middle East', 'decatur-2015' ),
+					'AP' => esc_html__( 'Armed Forces Pacific', 'decatur-2015' ),
+					'FM' => esc_html__( 'Federated States of Micronesia', 'decatur-2015' ),
+					'GU' => esc_html__( 'Guam', 'decatur-2015' ),
+					'MH' => esc_html__( 'Marshall Islands', 'decatur-2015' ),
+					'MP' => esc_html__( 'Northern Mariana Islands', 'decatur-2015' ),
+					'PR' => esc_html__( 'Puerto Rico', 'decatur-2015' ),
+					'PW' => esc_html__( 'Palau', 'decatur-2015' ),
+					'VI' => esc_html__( 'Virgin Islands', 'decatur-2015' )
+				),
+				'description' 	=> esc_html__( '', 'decatur-2015' ),
+				'label' => esc_html__( 'State', 'decatur-2015' ),
+				'priority' => 230,
+				'section' => 'contact_info',
+				'settings' => 'us_state',
+				'type' => 'select'
+			)
+		);
+		$wp_customize->get_setting( 'us_state' )->transport = 'postMessage';
+
+		// Zip Code Field
+		$wp_customize->add_setting(
+			'zip_code',
+			array(
+				'default'  	=> '',
+				'transport' => 'postMessage'
+			)
+		);
+		$wp_customize->add_control(
+			'zip_code',
+			array(
+				'description' 	=> esc_html__( '', 'decatur-2015' ),
+				'label'  	=> esc_html__( 'Zip Code', 'decatur-2015' ),
+				'priority' => 240,
+				'section'  	=> 'contact_info',
+				'settings' 	=> 'zip_code',
+				'type' 		=> 'text'
+			)
+		);
+		$wp_customize->get_setting( 'zip_code' )->transport = 'postMessage';
+
+		// Phone Number Field
+		$wp_customize->add_setting(
+			'phone_number',
+			array(
+				'default'  	=> '',
+				'transport' => 'postMessage'
+			)
+		);
+		$wp_customize->add_control(
+			'phone_number',
+			array(
+				'description' 	=> esc_html__( '', 'decatur-2015' ),
+				'label'  	=> esc_html__( 'Phone Number', 'decatur-2015' ),
+				'priority' => 250,
+				'section'  	=> 'contact_info',
+				'settings' 	=> 'phone_number',
+				'type' 		=> 'text'
+			)
+		);
+		$wp_customize->get_setting( 'phone_number' )->transport = 'postMessage';
+
+		// Email Address Field
+		$wp_customize->add_setting(
+			'email_address',
+			array(
+				'default'  	=> '',
+				'transport' => 'postMessage'
+			)
+		);
+		$wp_customize->add_control(
+			'email_address',
+			array(
+				'description' 	=> esc_html__( '', 'decatur-2015' ),
+				'label'  	=> esc_html__( 'Email Address', 'decatur-2015' ),
+				'priority' => 260,
+				'section'  	=> 'contact_info',
+				'settings' 	=> 'email_address',
+				'type' 		=> 'email'
+			)
+		);
+		$wp_customize->get_setting( 'email_address' )->transport = 'postMessage';
+
+
+
+
+
 
 /*
 		// Theme Options Panel
@@ -87,6 +356,7 @@ class decatur_2015_Customize {
 			array(
 				'description' 	=> esc_html__( '', 'decatur-2015' ),
 				'label'  	=> esc_html__( 'Text Field', 'decatur-2015' ),
+				'priority' => 10,
 				'section'  	=> 'new_section',
 				'settings' 	=> 'text_field',
 				'type' 		=> 'text'
@@ -109,6 +379,7 @@ class decatur_2015_Customize {
 			array(
 				'description' 	=> esc_html__( '', 'decatur-2015' ),
 				'label' => esc_html__( 'URL Field', 'decatur-2015' ),
+				'priority' => 10,
 				'section' => 'new_section',
 				'settings' => 'url_field',
 				'type' => 'url'
@@ -131,6 +402,7 @@ class decatur_2015_Customize {
 			array(
 				'description' 	=> esc_html__( '', 'decatur-2015' ),
 				'label' => esc_html__( 'Email Field', 'decatur-2015' ),
+				'priority' => 10,
 				'section' => 'new_section',
 				'settings' => 'email_field',
 				'type' => 'email'
@@ -151,6 +423,7 @@ class decatur_2015_Customize {
 			array(
 				'description' 	=> esc_html__( '', 'decatur-2015' ),
 				'label' => esc_html__( 'Date Field', 'decatur-2015' ),
+				'priority' => 10,
 				'section' => 'new_section',
 				'settings' => 'date_field',
 				'type' => 'date'
@@ -172,6 +445,7 @@ class decatur_2015_Customize {
 			array(
 				'description' 	=> esc_html__( '', 'decatur-2015' ),
 				'label' => esc_html__( 'Checkbox Field', 'decatur-2015' ),
+				'priority' => 10,
 				'section' => 'new_section',
 				'settings' => 'checkbox_field',
 				'type' => 'checkbox'
@@ -195,6 +469,7 @@ class decatur_2015_Customize {
 			array(
 				'description' 	=> esc_html__( '', 'decatur-2015' ),
 				'label' => esc_html__( 'Password Field', 'decatur-2015' ),
+				'priority' => 10,
 				'section' => 'new_section',
 				'settings' => 'password_field',
 				'type' => 'password'
@@ -222,6 +497,7 @@ class decatur_2015_Customize {
 				),
 				'description' 	=> esc_html__( '', 'decatur-2015' ),
 				'label' => esc_html__( 'Radio Field', 'decatur-2015' ),
+				'priority' => 10,
 				'section' => 'new_section',
 				'settings' => 'radio_field',
 				'type' => 'radio'
@@ -249,6 +525,7 @@ class decatur_2015_Customize {
 				),
 				'description' 	=> esc_html__( '', 'decatur-2015' ),
 				'label' => esc_html__( 'Select Field', 'decatur-2015' ),
+				'priority' => 10,
 				'section' => 'new_section',
 				'settings' => 'select_field',
 				'type' => 'select'
@@ -271,6 +548,7 @@ class decatur_2015_Customize {
 			array(
 				'description' 	=> esc_html__( '', 'decatur-2015' ),
 				'label' => esc_html__( 'Textarea Field', 'decatur-2015' ),
+				'priority' => 10,
 				'section' => 'new_section',
 				'settings' => 'textarea_field',
 				'type' => 'textarea'
@@ -300,6 +578,7 @@ class decatur_2015_Customize {
 					'style' => 'color: #020202'
 				),
 				'label' => esc_html__( 'Range Field', 'decatur-2015' ),
+				'priority' => 10,
 				'section' => 'new_section',
 				'settings' => 'range_field',
 				'type' => 'range'
@@ -322,6 +601,7 @@ class decatur_2015_Customize {
 			array(
 				'description' 	=> esc_html__( '', 'decatur-2015' ),
 				'label' => esc_html__( 'Select Page', 'decatur-2015' ),
+				'priority' => 10,
 				'section' => 'new_section',
 				'settings' => 'select_page_field',
 				'type' => 'dropdown-pages'
@@ -346,6 +626,7 @@ class decatur_2015_Customize {
 				array(
 					'description' 	=> esc_html__( '', 'decatur-2015' ),
 					'label' => esc_html__( 'Color Field', 'decatur-2015' ),
+					'priority' => 10,
 					'section' => 'new_section',
 					'settings' => 'color_field'
 				),
@@ -364,6 +645,7 @@ class decatur_2015_Customize {
 				array(
 					'description' 	=> esc_html__( '', 'decatur-2015' ),
 					'label' => esc_html__( 'File Upload', 'decatur-2015' ),
+					'priority' => 10,
 					'section' => 'new_section',
 					'settings' => 'file_upload'
 				),
@@ -387,6 +669,7 @@ class decatur_2015_Customize {
 				array(
 					'description' 	=> esc_html__( '', 'decatur-2015' ),
 					'label' => esc_html__( 'Image Field', 'decatur-2015' ),
+					'priority' => 10,
 					'section' => 'new_section',
 					'settings' => 'image_upload'
 				)
@@ -414,6 +697,7 @@ class decatur_2015_Customize {
 					'description' 	=> esc_html__( '', 'decatur-2015' ),
 					'label' => esc_html__( 'Media Field', 'decatur-2015' ),
 					'mime_type' => '',
+					'priority' => 10,
 					'section' => 'new_section',
 					'settings' => 'media_upload'
 				)
@@ -441,6 +725,7 @@ class decatur_2015_Customize {
 					'flex_height' => '',
 					'flex_width' => '',
 					'height' => '1080',
+					'priority' => 10,
 					'section' => 'new_section',
 					'settings' => 'cropped_image',
 					width' => '1920'
@@ -455,15 +740,6 @@ class decatur_2015_Customize {
 		$wp_customize->get_setting( 'blogname' )->transport 		= 'postMessage';
 		$wp_customize->get_setting( 'blogdescription' )->transport 	= 'postMessage';
 		$wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';
-
-
-		/*
-		$wp_customize->get_setting( 'text_field' )->transport 		= 'postMessage';
-		$wp_customize->get_setting( 'url_field' )->transport 		= 'postMessage';
-		$wp_customize->get_setting( 'email_field' )->transport 		= 'postMessage';
-		$wp_customize->get_setting( 'date_field' )->transport 		= 'postMessage';
-		$wp_customize->get_setting( 'checkbox_field' )->transport 	= 'postMessage';
-		*/
 
 	} // register()
 

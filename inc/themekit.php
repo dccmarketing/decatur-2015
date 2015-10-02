@@ -271,7 +271,9 @@ class decatur_2015_Themekit {
 
 		$return = '';
 
-		$formatted 	= preg_replace( '/[^0-9]/', '', $number );
+		$formatted = preg_replace( '/[^0-9]/', '', $number );
+
+		if ( ! is_numeric( $formatted ) ) { return FALSE; }
 
 		$return .= '<a href="tel:' . $formatted . '">';
 		$return .= '<span class="screen-reader-text">';

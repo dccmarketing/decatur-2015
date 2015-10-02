@@ -20,19 +20,19 @@ $color__bg-button-focus 	: darken( $color__background-button, 10% );
 
 // Text colors
 $color__text-screen			: #21759b;
-$color__text-input			: $dark;
-$color__text-input-focus	: $dark;
+$color__text-input			: $charcoal;
+$color__text-input-focus	: $charcoal;
 $color__text-pre 			: $light;
 $color__link				: royalblue;
 $color__link-visited		: purple;
 $color__link-hover			: midnightblue;
-$color__text-main			: #404040;
+$color__text-main			: $charcoal;
 $color__text-social 		: $light;
-$color__text-ins 			: $dark;
+$color__text-ins 			: $charcoal;
 $color__text-button 		: rgba(0, 0, 0, .8);
 $color__text-button-hover 	: $light;
 $color__text-button-focus 	: $light;
-$color__text-site-title 	: $dark;
+$color__text-site-title 	: $charcoal;
 
 // Border colors
 $color__border-button		: $med $med #bbb;
@@ -62,10 +62,10 @@ $color__bg-menu-item-mobile		: $med;
 $color__bg-menu-current			: darken( $color__bg-menu-item, 25% );
 $color__bg-menu-current-hover	: darken( $color__bg-menu-item, 25% );
 
-$color__text-menu				: $dark;
+$color__text-menu				: $charcoal;
 $color__text-menu-hover			: darken( $color__text-menu, 25% );
 $color__text-menu-mobile		: $light;
-$color__text-menu-mobile-hover 	: $dark;
+$color__text-menu-mobile-hover 	: $charcoal;
 $color__text-menu-button		: $light;
 $color__text-menu-button-mobile : $light;
 $color__text-menu-button-pseudo : $color__text-menu-button-mobile;
@@ -77,4 +77,4 @@ $color__text-submenu			: $light;
 $color__bg-search-container 	: $med;
 $color__bg-search-field 		: $light;
 $color__bg-search-btn-hover 	: $med;
-$color__text-search-field 		: $dark;
+$color__text-search-field 		: $charcoal;
