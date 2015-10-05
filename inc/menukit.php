@@ -170,6 +170,7 @@ class decatur_2015_Menukit {
 	 */
 	public function menu_caret( $item_output, $item, $depth, $args ) {
 
+		if ( 'header' !== $args->theme_location ) { return $item_output; }
 		if ( ! in_array( 'menu-item-has-children', $item->classes ) ) { return $item_output; }
 
 		global $decatur_2015_themekit;
@@ -178,8 +179,9 @@ class decatur_2015_Menukit {
 		$output = '';
 
 		$output .= '<a href="' . $item->url . '">';
-		$output .= $item->title;
-		$output .= '<span class="children">' . $decatur_2015_themekit->get_svg( 'caret-down' ) . '</span>';
+		$output .= '<span class="text">' . $item->title . '</span>';
+		$output .= '<span class="dashicons dashicons-arrow-down"></span>';
+		//$output .= '<span class="children">' . $decatur_2015_themekit->get_svg( 'caret-down' ) . '</span>';
 		$output .= '</a>';
 
 		return $output;
@@ -407,7 +409,7 @@ class decatur_2015_Menukit {
 	 */
 	public function search_icon_only( $item_output, $item, $depth, $args ) {
 
-		if ( '' !== $args->theme_location ) { return $item_output; }
+		if ( 'header' !== $args->theme_location ) { return $item_output; }
 		if ( 'Search' !== $item->post_title ) { return $item_output; }
 
 		//showme( $item );

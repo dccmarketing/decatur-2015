@@ -35,7 +35,7 @@ $color__text-social 		: $light;
 $color__text-ins 			: $charcoal;
 $color__text-button 		: rgba(0, 0, 0, .8);
 $color__text-button-hover 	: $light;
-$color__text-button-focus 	: $light;
+$color__text-button-focus 	: $yellow;
 $color__text-site-title 	: $charcoal;
 
 // Border colors
@@ -58,8 +58,8 @@ $color__shadow-button-inner-focus 	: rgba(255, 255, 255, 0.5);
 $color__shadow-button-inner-2-focus : rgba(0, 0, 0, 0.15);
 
 // Menu colors
-$color__bg-menu-button			: $med;
-$color__bg-menu-button-mobile 	: $med;
+$color__bg-menu-button			: $red;
+$color__bg-menu-button-mobile 	: $red;
 $color__bg-menu-button-pseudo 	: $color__bg-menu-button-mobile;
 $color__bg-menu-item			: $med;
 $color__bg-menu-item-mobile		: $med;
@@ -73,7 +73,7 @@ $color__text-menu-mobile-hover 	: $charcoal;
 $color__text-menu-button		: $light;
 $color__text-menu-button-mobile : $light;
 $color__text-menu-button-pseudo : $color__text-menu-button-mobile;
-$color__text-menu-current		: $light;
+$color__text-menu-current		: $yellow;
 $color__text-menu-current-hover	: $med;
 $color__text-submenu			: $light;
 

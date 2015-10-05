@@ -11,10 +11,15 @@
 	.logo {
 		fill: $light;
 	}
+
+	.wrap {
+		padding: 0;
+	}
 }
 
 .site-branding {
 	margin		: 0 auto;
+	padding 	: 1em;
 }
 
 .site-title {
