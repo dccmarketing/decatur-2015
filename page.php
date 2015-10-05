@@ -14,7 +14,7 @@
 
 get_header(); ?>
 
-	<div id="primary" class="content-area">
+	<div id="primary" class="content-area sidebar-content">
 		<main id="main" class="site-main" role="main"><?php
 
 			do_action( 'tha_content_while_before' );

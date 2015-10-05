@@ -58,6 +58,7 @@ class decatur_2015_Actions_and_Filters {
 	public function more_setup() {
 
 		register_nav_menus( array(
+			'header' => esc_html__( 'Header', 'decatur-2015' ),
 			'social' => esc_html__( 'Social Links', 'decatur-2015' )
 		) );
 

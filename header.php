@@ -9,6 +9,8 @@
  * @package Decatur_2015
  */
 
+global $decatur_2015_themekit;
+
 do_action( 'tha_html_before' );
 
 ?><!DOCTYPE html>
@@ -39,6 +41,8 @@ do_action( 'tha_body_top' );
 
 	?><header id="masthead" class="site-header" role="banner"><?php
 
+		get_template_part( 'menus/menu', 'header' );
+
 		do_action( 'tha_header_top' );
 
 		?><div class="wrap wrap-header">
@@ -46,16 +50,15 @@ do_action( 'tha_body_top' );
 
 			if ( is_front_page() && is_home() ) {
 
-				?><h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1><?php
+				?><h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><span class="screen-reader-text"><?php bloginfo( 'name' ); ?></span><?php $decatur_2015_themekit->the_svg( 'logo' ); ?></a></h1><?php
 
 			} else {
 
-				?><p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p><?php
+				?><p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><span class="screen-reader-text"><?php bloginfo( 'name' ); ?></span><?php $decatur_2015_themekit->the_svg( 'logo' ); ?></a></p><?php
 
 			}
 
-				?><p class="site-description"><?php bloginfo( 'description' ); ?></p>
-			</div><!-- .site-branding --><?php
+			?></div><!-- .site-branding --><?php
 
 			get_template_part( 'menus/menu', 'primary' );
 
