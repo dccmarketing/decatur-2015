@@ -2,3 +2,23 @@
 .archive .format-aside .entry-title {
 	display: none;
 }
+
+.sidebar-cityadmin {
+	padding-bottom: 0;
+
+	.widget {
+		margin-bottom: 0;
+	}
+}
+
+.sidebar-homebottom {
+
+	.widget_sp_image {
+		position: relative;
+
+		.widget-title {
+			position 	: absolute;
+			width 		: 100%;
+		}
+	}
+}

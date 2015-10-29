@@ -9,7 +9,13 @@
 
 get_header();
 
-	?><div id="primary" class="content-area full-width">
+?><div class="wrap wrap-content full-width">
+	<header class="page-header contentpage"><?php
+
+		the_title( '<h1 class="page-title">', '</h1>' );
+
+	?></header><!-- .entry-header -->
+	<div id="primary" class="content-area full-width">
 		<main id="main" class="site-main" role="main"><?php
 
 			do_action( 'tha_content_while_before' );

@@ -14,7 +14,8 @@
 
 get_header();
 
-	?><div id="primary" class="content-area sidebar-content">
+?><div class="wrap wrap-content sidebar-content">
+	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main"><?php
 
 		if ( have_posts() ) :
@@ -39,7 +40,7 @@ get_header();
 				 * If you want to override this in a child theme, then include a file
 				 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
 				 */
-				get_template_part( 'template-parts/content', get_post_format() );
+				get_template_part( 'template-parts/content', 'excerpt' );
 
 				do_action( 'tha_entry_after' );
 
@@ -56,7 +57,15 @@ get_header();
 		endif;
 
 		?></main><!-- #main -->
-	</div><!-- #primary --><?php
+	</div><!-- #primary -->
+	<div class="sidebars"><?php
 
-get_sidebar();
+		do_action( 'tha_sidebars_before' );
+
+		get_sidebar();
+
+		do_action( 'tha_sidebars_after' );
+
+	?></div><?php
+
 get_footer();

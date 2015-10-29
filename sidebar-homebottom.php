@@ -5,15 +5,15 @@
  * @package Decatur_2015
  */
 
-if ( ! is_active_sidebar( 'sidebar-left' ) ) { return; }
+if ( ! is_active_sidebar( 'sidebar-homebottom' ) ) { return; }
 
 do_action( 'tha_sidebars_before' );
 
-?><div id="secondary" class="widget-area sidebar-left" role="complementary"><?php
+?><div id="secondary" class="widget-area sidebar-homebottom" role="complementary"><?php
 
 	do_action( 'tha_sidebar_top' );
 
-	dynamic_sidebar( 'sidebar-left' );
+	dynamic_sidebar( 'sidebar-homebottom' );
 
 	do_action( 'tha_sidebar_bottom' );
 

@@ -1,0 +1,22 @@
+.tabs {
+
+	.tabnav {
+		@extend %listreset;
+		border-bottom 	: 1px solid $charcoal;
+		margin-bottom 	: 1.5em;
+		padding-bottom 	: 1.5em;
+
+		li {
+			display: inline-block;
+
+			&:not(:last-child) {
+				margin-right: 1.5em;
+			}
+		}
+	}
+
+	.tabdiv {
+		margin-bottom 	: 1.5em;
+	}
+
+}

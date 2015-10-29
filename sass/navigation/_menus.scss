@@ -9,34 +9,39 @@
 		display 	: none;
 		text-align 	: left;
 
-		@media only screen and (min-width: $bp__menu-button+1) {
+		@media only screen and (min-width: $bp__real_menu_button + 1) {
 			display 	: block;
 			text-align	: center;
 		}
 
-		ul {
-			background-color: $color__bg-menu-item-mobile;
-			display			: inherit;
+		.wrap-submenu {
+				display			: inherit;
 
-			@media only screen and (min-width: $bp__menu-button+1) {
-				box-shadow	: 0 3px 3px rgba(0, 0, 0, 0.2);
-				left 		: 0;
-				opacity 	: 0;
-				position	: absolute;
-				transition 	: visibility 0s ease 0.5s,opacity 0.5s ease;
-				visibility 	: hidden;
-				z-index		: 99999;
-			} // breakpoint
+				@media only screen and (min-width: $bp__real_menu_button+1) {
+					background-color: $color__bg-submenu;
+					left 			: 0;
+					max-height 		: 0;
+					opacity 		: 0;
+					position		: absolute;
+					transition 		: $trans__default;
+					visibility 		: hidden;
+					width 			: 100%;
+					z-index			: 99999;
+				} // bp
+			}
+
+		ul {
+			display: inherit;
 
 			ul {
 
-				@media only screen and (min-width: $bp__menu-button+1) {
+				@media only screen and (min-width: $bp__real_menu_button+1) {
 					left: 100%;
 					top	: 0;
 				}
 
 				a {
-					@media only screen and (max-width: $bp__menu-button) {
+					@media only screen and (max-width: $bp__real_menu_button) {
 						border-left : none;
 						padding 	: 0.5em 3em;
 					}
@@ -44,41 +49,158 @@
 			}
 
 			a {
-				@media only screen and (max-width: $bp__menu-button) {
+				@media only screen and (max-width: $bp__real_menu_button) {
 					padding: 0.5em 2em;
 				}
 
-				@media only screen and (min-width: $bp__menu-button+1) {
-					color 		: $color__text-submenu;
-					white-space : nowrap;
+				@media only screen and (min-width: $bp__real_menu_button+1) {
+					color 			: $color__text-submenu;
+					font-size 		: 1em;
+					text-transform 	: capitalize;
+					white-space 	: nowrap;
 				}
 			}
 
 			li {
 
-				&:last-child {
 
-					@media only screen and (max-width: $bp__menu-button) {
-						padding-bottom: 0;
+
+				/**
+				 * If submenu is open, allow other submenus to display their label
+				 * if hovering over them.
+				 */
+				.open-dept {
+
+					ul ul li:not(.current-menu-ancestor) {
+
+						.menu-label {
+							opacity 	: 0;
+							transition 	: $trans__default;
+						}
+
+						&:hover {
+							.menu-label {
+								opacity: 1;
+							}
+
+							.open-dept ul ul li.current-menu-ancestor .menu-label {
+								opacity: 0;
+							}
+						}
 					}
 				}
 
+				.water-customer-service & {
+
+					&.current-menu-ancestor:not(.current-referrer) {
+						.menu-label {
+							opacity: 0;
+						}
+					}
+				}
+
+				&:last-child {
+
+					@media only screen and (max-width: $bp__real_menu_button) {
+						padding-bottom: 0;
+					}
+				}
 			}
+
+
 		} // .submenu ul
+
+		/* > li {
+
+			&.current-menu-ancestor.departments {
+				ul li:not( .current-menu-ancestor ):not( .current-menu-item ) {
+					.menu-label {
+						opacity: 0;
+					}
+				}
+			}
+
+		} */
+
 	} // first-level ul
 
 	li {
 
-		@media only screen and (min-width: $bp__menu-button+1) {
+		@media only screen and (min-width: $bp__real_menu_button+1) {
 			display 	: inline-block;
-			position 	: relative;
+
+			&.departments.open .wrap-submenu,
+			&.open-dept .wrap-submenu {
+				max-height: 160px;
+			}
+
+			&.doing-business.open .wrap-submenu,
+			&.open-biz .wrap-submenu {
+				max-height: 40px;
+			}
+
+			.depts-marg &.departments,
+			.fire &.departments,
+			.police &.departments {
+				.menu-label {
+					font-size 		: 36px;
+					font-style 		: italic;
+					font-weight 	: 700;
+					left 			: 0;
+					margin-top 		: 0.35em;
+					opacity 		: 1;
+					position 		: absolute;
+					text-transform 	: uppercase;
+					transition 		: $trans__default;
+					width 			: 100%;
+				}
+
+				.menu-item:not(.current-menu-ancestor) {
+					.menu-label {
+						opacity: 0;
+					}
+				}
+			}
+
+			&.departments {
+				li {
+					.menu-label {
+						&.show {
+							opacity: 1 !important;
+						}
+						&.hide {
+							opacity: 0 !important;
+						}
+					}
+				}
+			}
+
+			> .wrap-submenu {
+				> .sub-menu {
+					margin 			: 0 auto;
+					max-width 		: 680px;
+					padding-bottom 	: 3em;
+					position 		: relative;
+
+					.home & {
+						padding-bottom: 0;
+					}
+
+					.fire &,
+					.police & {
+						padding-bottom: 3em;
+					}
+				}
+			}
 		}
 
-		&:hover,
-		&.focus {
+		&.open,
+		&.open-dept,
+		&.open-biz {
 
-			> ul {
-				@media only screen and (min-width: $bp__menu-button+1) {
+			> ul,
+			> .wrap-submenu {
+				@media only screen and (min-width: $bp__real_menu_button+1) {
 					display 	: block;
 					opacity 	: 1;
 					visibility 	: visible;
@@ -86,29 +208,51 @@
 			}
 
 			> a {
-				background-color: $color__bg-menu-item-mobile;
 				color 			: $color__text-menu-mobile-hover;
 
-				@media only screen and (min-width: $bp__menu-button+1) {
+				@media only screen and (min-width: $bp__real_menu_button+1) {
 					color: $color__text-menu-hover;
 				}
 			}
+		}
+	}
 
+	.depts-marg & {
+		li.current-menu-ancestor.departments {
+			li:not( .current-menu-ancestor ):not( .current-menu-item ) {
+				.menu-label {
+					opacity: 0;
+				}
+			}
 		}
 	}
 
 	a {
 		color 			: $color__text-menu-mobile;
 		display			: block;
-		padding 		: 0.5em 1em;
+		padding 		: 0.75em 1em;
 		text-decoration	: none;
 
-		@media only screen and (min-width: $bp__menu-button+1) {
-			color: $color__text-menu;
+		@media only screen and (min-width: $bp__real_menu_button+1) {
+			color 			: $color__text-menu;
+			font-size 		: 20px;
+			text-transform 	: uppercase;
 		}
 
 		&:focus {
 			outline-color: $color__outline-menu-link;
+		}
+
+		svg {
+			display: none;
+
+			@media only screen and (min-width: $bp__real_menu_button+1) {
+				display : block;
+				fill 	: $light;
+				height 	: 40px;
+				margin 	: 0 auto;
+				width 	: 40px;
+			}
 		}
 	}
 
@@ -117,16 +261,21 @@
 	.current-menu-parent,
 	.current_page_ancestor {
 
-		@media only screen and (min-width: $bp__menu-button+1) {
+		@media only screen and (min-width: $bp__real_menu_button+1) {
 			background-color: $color__bg-menu-current;
 		}
 
 		> a {
 			color: $color__text-menu-current;
+
+			svg {
+				fill: $yellow;
+			}
 		}
 
-		&:hover,
-		&.focus {
+		&.open,
+		&.open-biz,
+		&.open-dept {
 
 			> a {
 				color: $color__text-menu-current-hover;
@@ -134,17 +283,20 @@
 		}
 	}
 
+	&.fire .departments,
+	&.police .departments {
+		.wrap-submenu {
+			display 	: block;
+			max-height 	: 160px;
+			opacity 	: 1;
+			visibility 	: visible;
+		}
+	}
+
 	&.toggled {
 
 		.nav-menu {
 			@extend %menutoggle;
-		}
-
-		.menu-main-menu-container {
-			@media only screen and (min-width: $bp__tablet) and (max-width: $bp__laptop) {
-				transform: translateX(0);
-			}
-
 		}
 
 		.menu-toggle {
@@ -155,32 +307,8 @@
 
 // Center Menu
 .menu-main-menu-container {
-	margin		: 0 auto;
-
-	/**
-	 * Tablet menu - slide in from left - on top or pushing content
-	 */
-	@media only screen and (min-width: $bp__tablet) and (max-width: $bp__laptop) {
-		background-color: $dark;
-		bottom 			: 0;
-		height 			: 100%;
-		left 			: 0;
-		overflow 		: auto;
-		position 		: fixed;
-		top 			: 0;
-		transform 		: translateX( -$size__menu_width);
-		transition 		: transform 0.4s ease;
-		width 			: $size__menu_width;
-		z-index 		: 9999;
-
-		.admin-bar & {
-			padding-top: $size__wp-admin-bar-1;
-
-			@media only screen and (min-width: $bp__admin-bar-1) {
-				padding-top: $size__wp-admin-bar-2;
-			}
-		}
-	}
+	background-color: $transdark;
+	margin			: 0 auto;
 }
 
 
@@ -188,16 +316,7 @@
 .menu-toggle {
 	@extend %menutoggle;
 
-	@media only screen and (min-width: $bp__tablet) and (max-width: $bp__laptop) {
-		background-color: $color__bg-menu-button;
-		color 			: $color__text-menu-button;
-		position 		: absolute;
-		right 			: 0;
-		width 			: 200px;
-		z-index 		: 99;
-	}
-
-	@media only screen and (min-width: $bp__menu-button+1) {
+	@media only screen and (min-width: $bp__real_menu_button+1) {
 		display 		: none;
 	}
 }

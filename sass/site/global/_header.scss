@@ -1,11 +1,24 @@
 .site-header {
 	// DO NOT ADD PADDING HERE! - it screws up menus
-	background-color: $blue;
-	margin-bottom	: $size__default-bot-marg;
-	overflow 		: auto;
+	background-color 	: $blue;
+	background-position : center center;
+	background-repeat 	: no-repeat;
+	background-size 	: cover;
+	overflow 			: auto;
+	transition 			: $trans__default;
 
-	@media only screen and (min-width: $bp__menu-button+1) {
+	@media only screen and (min-width: $bp__real_menu_button+1) {
+		height 		: 471px;
 		overflow 	: visible;
+
+		.home & {
+			height: 645px;
+		}
+
+		.fire &,
+		.police & {
+			height: 472px;
+		}
 	}
 
 	.logo {
@@ -13,7 +26,8 @@
 	}
 
 	.wrap {
-		padding: 0;
+		max-width 	: none;
+		padding 	: 0;
 	}
 }
 
@@ -23,13 +37,107 @@
 }
 
 .site-title {
-	text-align: center;
+	text-align 	: center;
+	transition 	: $trans__default;
+
+	@media only screen and (min-width: $bp__real_menu_button+1) {
+		margin: 97px 0;
+
+		.home & {
+			margin: 130px 0;
+		}
+
+		&.open-dept {
+			margin: 17px 0;
+
+			.home & {
+				margin: 77px 0;
+			}
+
+			.depts-marg &,
+			.fire &,
+			.police & {
+				margin: 41px 0;
+			}
+
+			/* .fire.home &,
+			.police.home & {
+				margin: 14px 0;
+			} */
+
+		}
+
+		&.open-biz,
+		.biz-marg & {
+			margin: 78px 0;
+
+			.home & {
+				margin: 121px 0;
+
+				.open-dept {
+					margin: 18px 0;
+				}
+			}
+
+			&.open-dept {
+				margin: 18px 0;
+			}
+
+			.fire &,
+			.police & {
+				margin: 35px 0;
+			}
+		}
+	} // bp
 
 	a {
 		color 			: $color__text-site-title;
+		display 		: block;
 		text-decoration : none;
 	}
-}
+
+	.logo {
+		filter 			: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=3, OffY=3, Color='#020202')";
+		//filter 			: url(#drop-shadow);
+		-webkit-filter 	: drop-shadow( 3px 3px 0px $transdark );
+		filter 			: drop-shadow( 3px 3px 0px $transdark );
+		height 			: 125px;
+		width 			: 290px;
+		transition 		: $trans__default;
+
+		@media only screen and (min-width: $bp__real_menu_button+1) {
+			height 	: 151px;
+			width 	: 350px;
+
+			.home & {
+				height 	: 258px;
+				width 	: 600px;
+			}
+
+			.open-dept & {
+
+				.home & {
+					height 	: 204px;
+					width 	: 475px;
+				}
+
+				.home.police &,
+				.home.fire & {
+					height 	: 151px;
+					width 	: 350px;
+				}
+			}
+
+			.open-biz & {
+
+				.home & {
+					height 	: 237px;
+					width 	: 550px;
+				}
+			}
+		} // bp
+	} // .logo
+} // .site-title
 
 .site-description {
 	text-align: center;

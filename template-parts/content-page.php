@@ -11,11 +11,11 @@
 
 	do_action( 'tha_entry_top' );
 
-	?><header class="page-header contentpage"><?php
+	/*?><header class="page-header contentpage"><?php
 
 		the_title( '<h1 class="page-title">', '</h1>' );
 
-	?></header><!-- .entry-header --><?php
+	?></header><!-- .entry-header --><?php*/
 
 	do_action( 'tha_entry_content_before' );
 

@@ -1,55 +1,51 @@
 /**
  * hidden-search.js
  *
- * Handles toggling the appearnace of a hidden search field
+ * Handles toggling the appearance of a hidden search field
  */
-( function() {
+( function( $ ) {
 
-	var index, search, page, button;
+	var search, button;
 
-	search = document.getElementById( 'hidden-search-top' );
-	if ( ! search ) { return; }
+	search = $( '#hidden-search-top' );
+	button = $( '.btn-search' );
 
-	page = document.getElementById( 'page' );
-	if ( ! page ) { return; }
+	search.attr( 'aria-hidden', 'true' );
 
-	button = document.getElementsByClassName( 'btn-search' )[0];
-	if ( ! button ) { return; }
-
-	search.setAttribute( 'aria-hidden', 'true' );
-
-	button.onclick = function( e ) {
+	button.on( 'click', function( e ){
 
 		e.preventDefault();
 
-		if ( -1 !== search.className.indexOf( 'open' ) ) {
+		search.toggleClass( 'open' );
 
-			search.className = search.className.replace( ' open', '' );
-			search.setAttribute( 'aria-hidden', 'true' );
+		if ( search.is( ':hidden' ) ) {
+
+			search.attr( 'aria-hidden', 'true' );
 
 		} else {
 
-			search.className += ' open';
-			search.setAttribute( 'aria-hidden', 'false' );
+			search.attr( 'aria-hidden', 'false' );
 
 		}
 
-		var affected = [ page, button ];
+	});
 
-		for	( index = 0; index < affected.length; index++ ) {
+	button.on( 'touchstart', function( e ){
 
-			if ( -1 !== affected[index].className.indexOf( 'open' ) ) {
+		e.preventDefault();
 
-				affected[index].className = affected[index].className.replace( ' open', '' );
+		search.toggleClass( 'open' );
 
-			} else {
+		if ( search.is( ':hidden' ) ) {
 
-				affected[index].className += ' open';
+			search.attr( 'aria-hidden', 'true' );
 
-			}
+		} else {
+
+			search.attr( 'aria-hidden', 'false' );
 
 		}
 
-	};
+	});
 
-} )();
+} )( jQuery );

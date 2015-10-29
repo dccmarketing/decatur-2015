@@ -11,15 +11,12 @@
 
 global $decatur_2015_themekit;
 
-		?></div><!-- .wrap --><?php
-
 		do_action( 'tha_content_bottom' );
 
-	?></div><!-- #content --><?php
+		?></div><!-- .wrap -->
+	</div><!-- #content --><?php
 
 	do_action( 'tha_content_after' );
-
-	do_action( 'after_content' );
 
 	do_action( 'tha_footer_before' );
 

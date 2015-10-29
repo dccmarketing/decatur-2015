@@ -9,7 +9,8 @@
 
 get_header();
 
-	?><div id="primary" class="content-area sidebar-content">
+?><div class="wrap wrap-content sidebar-content">
+	<div id="primary" class="content-area sidebar-content">
 		<main id="main" class="site-main" role="main"><?php
 
 		do_action( 'tha_content_while_before' );
@@ -22,21 +23,20 @@ get_header();
 
 			do_action( 'tha_entry_after' );
 
-			the_post_navigation();
-
-			// If comments are open or we have at least one comment, load up the comment template.
-			if ( comments_open() || get_comments_number() ) {
-
-				comments_template();
-
-			}
-
 		endwhile; // End of the loop.
 
 		do_action( 'tha_content_while_after' );
 
 		?></main><!-- #main -->
-	</div><!-- #primary --><?php
+	</div><!-- #primary -->
+	<div class="sidebars"><?php
 
-get_sidebar();
+		do_action( 'tha_sidebars_before' );
+
+		get_sidebar();
+
+		do_action( 'tha_sidebars_after' );
+
+	?></div><?php
+
 get_footer();

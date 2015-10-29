@@ -7,8 +7,9 @@
  * @package Decatur_2015
  */
 
-get_header(); ?>
+get_header();
 
+?><div class="wrap wrap-content sidebar-content">
 	<div id="primary" class="content-area sidebar-content">
 		<main id="main" class="site-main" role="main"><?php
 
@@ -32,7 +33,15 @@ get_header(); ?>
 			do_action( 'tha_content_while_after' );
 
 		?></main><!-- #main -->
-	</div><!-- #primary --><?php
+	</div><!-- #primary -->
+	<div class="sidebars"><?php
 
-get_sidebar( 'left' );
+		do_action( 'tha_sidebars_before' );
+
+		get_sidebar( 'left' );
+
+		do_action( 'tha_sidebars_after' );
+
+	?></div><?php
+
 get_footer();

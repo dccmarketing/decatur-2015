@@ -1,0 +1,32 @@
+.list-projects {
+	@extend %listreset;
+}
+
+.loop-content-info-wrap {
+	display 		: flex;
+	flex-wrap 		: wrap;
+	justify-content : space-between;
+
+	div {
+		width: 100%;
+
+		@media only screen and (min-width: $bp__tablet) {
+
+			&:first-child {
+				width: 35%;
+			}
+
+			&:last-child {
+				width: 60%;
+			}
+		}
+
+		ul {
+			@extend %listreset;
+		}
+
+		li {
+			padding-top: 0;
+		}
+	}
+}

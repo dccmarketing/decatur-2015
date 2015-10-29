@@ -16,6 +16,27 @@
 
 }
 
+.seal {
+	@extend %clearbefore;
+	order 		: 4;
+	text-align 	: center;
+	width 		: 100%;
+
+	.home & {
+		display: none;
+	}
+
+	.fire.home &,
+	.police.home & {
+		display: block;
+	}
+
+	.seal-small {
+		max-height 	: 100px;
+		max-width 	: 100px;
+	}
+}
+
 .contact-info {
 	@extend %listreset;
 

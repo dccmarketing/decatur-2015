@@ -12,9 +12,23 @@
  * @package Decatur_2015
  */
 
-get_header(); ?>
+get_header();
 
-	<div id="primary" class="content-area sidebar-content">
+?><div class="wrap wrap-content sidebar-content">
+	<header class="page-header contentpage"><?php
+
+		if ( ! is_front_page() ) {
+
+			the_title( '<h1 class="page-title">', '</h1>' );
+
+		} else {
+
+			?><h1 class="page-title"><?php echo get_bloginfo( 'name' ); ?></h1><?php
+
+		}
+
+	?></header><!-- .entry-header -->
+	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main"><?php
 
 			do_action( 'tha_content_while_before' );
@@ -39,7 +53,15 @@ get_header(); ?>
 			do_action( 'tha_content_while_after' );
 
 		?></main><!-- #main -->
-	</div><!-- #primary --><?php
+	</div><!-- #primary -->
+	<div class="sidebars"><?php
 
-get_sidebar();
+		do_action( 'tha_sidebars_before' );
+
+		get_sidebar();
+
+		do_action( 'tha_sidebars_after' );
+
+	?></div><?php
+
 get_footer();

@@ -164,4 +164,19 @@ require get_template_directory() . '/inc/actions-and-filters.php';
  */
 require get_template_directory() . '/inc/menukit.php';
 
+/**
+ * Load Main Menu Walker
+ */
+require get_template_directory() . '/inc/main-menu-walker.php';
+
+/**
+ * Load Employees Tweaker
+ */
+require get_template_directory() . '/inc/employees.php';
+
+/**
+ * Load Now Hiring Tweaker
+ */
+require get_template_directory() . '/inc/now-hiring.php';
+
 

@@ -21,6 +21,7 @@ do_action( 'tha_head_top' );
 
 ?><meta charset="<?php bloginfo( 'charset' ); ?>">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="always">
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>"><?php
 
@@ -39,7 +40,7 @@ do_action( 'tha_body_top' );
 
 	do_action( 'tha_header_before' );
 
-	?><header id="masthead" class="site-header" role="banner"><?php
+	?><header id="masthead" class="site-header <?php echo $decatur_2015_themekit->get_header_class(); ?>" role="banner"><?php
 
 		get_template_part( 'menus/menu', 'header' );
 
@@ -50,11 +51,11 @@ do_action( 'tha_body_top' );
 
 			if ( is_front_page() && is_home() ) {
 
-				?><h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><span class="screen-reader-text"><?php bloginfo( 'name' ); ?></span><?php $decatur_2015_themekit->the_svg( 'logo' ); ?></a></h1><?php
+				?><h1 class="site-title"><a class="link-logo" href="<?php echo esc_url( get_site_url( 1, '/' ) ); ?>" rel="home"><span class="screen-reader-text"><?php bloginfo( 'name' ); ?></span><?php $decatur_2015_themekit->the_svg( 'logo' ); ?></a></h1><?php
 
 			} else {
 
-				?><p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><span class="screen-reader-text"><?php bloginfo( 'name' ); ?></span><?php $decatur_2015_themekit->the_svg( 'logo' ); ?></a></p><?php
+				?><p class="site-title <?php echo $decatur_2015_themekit->get_header_class(); ?>"><a class="link-logo" href="<?php echo esc_url( get_site_url( 1, '/' ) ); ?>" rel="home"><span class="screen-reader-text"><?php bloginfo( 'name' ); ?></span><?php $decatur_2015_themekit->the_svg( 'logo' ); ?></a></p><?php
 
 			}
 
@@ -72,15 +73,13 @@ do_action( 'tha_body_top' );
 
 	do_action( 'tha_content_before' );
 
-	?><div id="content" class="site-content"><?php
+	?><div class="breadcrumbs">
+		<div class="wrap-crumbs"><?php
+
+			do_action( 'decatur_2015_breadcrumbs' );
+
+		?></div><!-- .wrap-crumbs -->
+	</div><!-- .breadcrumbs -->
+	<div id="content" class="site-content"><?php
 
 		do_action( 'tha_content_top' );
-
-		?><div class="wrap wrap-content">
-			<div class="breadcrumbs">
-				<div class="wrap-crumbs"><?php
-
-					do_action( 'decatur_2015_breadcrumbs' );
-
-				?></div><!-- .wrap-crumbs -->
-			</div><!-- .breadcrumbs -->

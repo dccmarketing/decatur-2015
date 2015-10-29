@@ -9,9 +9,7 @@
 
 if ( ! is_active_sidebar( 'sidebar-1' ) ) { return; }
 
-do_action( 'tha_sidebars_before' );
-
-?><div id="secondary" class="widget-area" role="complementary"><?php
+?><div id="secondary" class="widget-area sidebar-content" role="complementary"><?php
 
 	do_action( 'tha_sidebar_top' );
 
@@ -19,6 +17,4 @@ do_action( 'tha_sidebars_before' );
 
 	do_action( 'tha_sidebar_bottom' );
 
-?></div><!-- #secondary --><?php
-
-do_action( 'tha_sidebars_after' );
+?></div><!-- #secondary -->

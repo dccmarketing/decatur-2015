@@ -1,5 +1,12 @@
 .gallery {
 	margin-bottom: 1.5em;
+
+	&:after {
+		clear 	: both;
+		content : "";
+		display : block;
+
+	}
 }
 
 .gallery-item {

@@ -7,9 +7,10 @@
  * @package Decatur_2015
  */
 
-get_header(); ?>
+get_header();
 
-	<div id="primary" class="content-area sidebar-content">
+?><div class="wrap wrap-content sidebar-content">
+	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main"><?php
 
 		if ( have_posts() ) :
@@ -52,7 +53,15 @@ get_header(); ?>
 		endif;
 
 		?></main><!-- .site-main -->
-	</div><!-- .content-area --><?php
+	</div><!-- .content-area -->
+	<div class="sidebars"><?php
 
-get_sidebar();
+		do_action( 'tha_sidebars_before' );
+
+		get_sidebar();
+
+		do_action( 'tha_sidebars_after' );
+
+	?></div><?php
+
 get_footer();

@@ -9,7 +9,8 @@
 
 get_header();
 
-	?><div id="primary" class="content-area sidebar-content">
+?><div class="wrap wrap-content sidebar-content">
+	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
 
 			<section class="error-404 not-found">
@@ -18,7 +19,8 @@ get_header();
 				</header><!-- .page-header -->
 
 				<div class="page-content">
-					<p><?php esc_html_e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'decatur-2015' ); ?></p><?php
+					<p><?php esc_html_e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'decatur-2015' ); ?></p>
+					<p><a href="<?php echo esc_url( get_permalink( get_page_by_title( 'Info A-to-Z' ) ), 'decatur-2015' ); ?>"><?php esc_html_e( 'Info A-to-Z (site map)', 'decatur-2015' ); ?></a></p><?php
 
 					get_search_form();
 
@@ -44,15 +46,22 @@ get_header();
 					endif;
 
 					/* translators: %1$s: smiley */
-					$archive_content = '<p>' . sprintf( esc_html__( 'Try looking in the monthly archives. %1$s', 'decatur-2015' ), convert_smilies( ':)' ) ) . '</p>';
+					$archive_content = '<p>' . esc_html__( 'Try looking in the monthly archives. %1$s', 'decatur-2015' ) . '</p>';
 					the_widget( 'WP_Widget_Archives', 'dropdown=1', "after_title=</h2>$archive_content" );
-
-					the_widget( 'WP_Widget_Tag_Cloud' );
 
 				?></div><!-- .page-content -->
 			</section><!-- .error-404 -->
 
 		</main><!-- #main -->
-	</div><!-- #primary --><?php
+	</div><!-- #primary -->
+	<div class="sidebars"><?php
+
+		do_action( 'tha_sidebars_before' );
+
+		get_sidebar();
+
+		do_action( 'tha_sidebars_after' );
+
+	?></div><?php
 
 get_footer();

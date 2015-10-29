@@ -1,13 +1,21 @@
 .hidden-search-top {
 	background-color: $color__bg-search-container;
-	display 		: block;
-	height 			: $size__hidden-search;
-	margin-top 		: -$size__hidden-search;
+	left 			: 50%;
+	margin 			: 0 auto;
+	opacity 		: 0;
+	padding 		: 1em;
+	position 		: absolute;
+	transform 		: translate(-50%);
 	transition 		: $trans__default;
+	visibility 		: hidden;
 	width 			: 100%;
+	z-index 		: 999;
+
+	@media only screen and (min-width: $bp__real_menu_button+1) {
+		width 			: 50%;
+	}
 
 	.wrap {
-		@extend %vertcenter;
 
 		&:after {
 			clear 	: both;
@@ -17,7 +25,8 @@
 	}
 
 	&.open {
-		margin-top: 0;
+		opacity: 1;
+		visibility: visible;
 	}
 
 	.search-form {

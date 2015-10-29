@@ -15,12 +15,7 @@
 
 		the_title( '<h1 class="entry-title">', '</h1>' );
 
-		?><div class="entry-meta"><?php
-
-			decatur_2015_posted_on();
-
-		?></div><!-- .entry-meta -->
-	</header><!-- .entry-header --><?php
+	?></header><!-- .entry-header --><?php
 
 	do_action( 'tha_entry_content_before' );
 
@@ -39,7 +34,7 @@
 
 	?><footer class="entry-footer"><?php
 
-		decatur_2015_entry_footer();
+		decatur_2015_posted_on();
 
 	?></footer><!-- .entry-footer --><?php
 
