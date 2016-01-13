@@ -2,7 +2,27 @@
 	clear			: both;
 	display			: block;
 	float			: left;
+	transition 		: $trans__default;
 	width			: 100%;
+
+	@media only screen and (min-width: $bp__real_menu_button + 1) {
+		position: absolute;
+		bottom 	: 0;
+
+		.open-dept & {
+			bottom: 160px;
+		}
+
+		.depts-marg &,
+		.home.fire &,
+		.home.police &  {
+			bottom: 115px;
+		}
+
+		.open-biz & {
+			bottom: 40px;
+		}
+	}
 
 	ul {
 		@extend %listreset;
@@ -63,8 +83,6 @@
 
 			li {
 
-
-
 				/**
 				 * If submenu is open, allow other submenus to display their label
 				 * if hovering over them.
@@ -110,18 +128,6 @@
 
 		} // .submenu ul
 
-		/* > li {
-
-			&.current-menu-ancestor.departments {
-				ul li:not( .current-menu-ancestor ):not( .current-menu-item ) {
-					.menu-label {
-						opacity: 0;
-					}
-				}
-			}
-
-		} */
-
 	} // first-level ul
 
 	li {
@@ -155,7 +161,7 @@
 					width 			: 100%;
 				}
 
-				.menu-item:not(.current-menu-ancestor) {
+				.menu-item:not(.current-menu-ancestor):not( .current-menu-item ) {
 					.menu-label {
 						opacity: 0;
 					}
@@ -183,12 +189,14 @@
 					position 		: relative;
 
 					.home & {
-						padding-bottom: 0;
+						max-width 		: 645px;
+						padding-bottom	: 0;
 					}
 
 					.fire &,
 					.police & {
-						padding-bottom: 3em;
+						max-width 		: 680px;
+						padding-bottom 	: 3em;
 					}
 				}
 			}
@@ -221,7 +229,10 @@
 		li.current-menu-ancestor.departments {
 			li:not( .current-menu-ancestor ):not( .current-menu-item ) {
 				.menu-label {
-					opacity: 0;
+
+					@media only screen and (min-width: $bp__real_menu_button+1) {
+						opacity: 0;
+					}
 				}
 			}
 		}

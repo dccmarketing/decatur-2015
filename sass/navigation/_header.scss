@@ -1,7 +1,9 @@
 .menu-header {
 	background-color: $transdark;
 	color 			: $light;
+	position 		: relative;
 	text-transform 	: uppercase;
+	z-index 		: 9999;
 
 	.nav-header {
 		margin 		: 0 auto;

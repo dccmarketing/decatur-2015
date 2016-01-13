@@ -136,9 +136,19 @@
 
 						curchild = cursub.children( '.current-menu-ancestor' );
 
+						if ( curchild.length === 0 ) {
+
+							curchild = cursub.children( '.current-menu-item' );
+
+						}
+
 					}
 
+					console.log( curchild );
+
 					curchildlabel = curchild.find( 'a .menu-label' );
+
+					console.log( curchildlabel );
 
 				}
 

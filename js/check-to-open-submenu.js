@@ -7,33 +7,7 @@
 
 	'use strict';
 
-	var parents = $( '.nav-header ul .menu-item-has-children' );
-
-	/*parents.each( function() {
-
-		var $this = $(this);
-		var submenu = $this.children( '.sub-menu' );
-
-		$this.on( 'touchstart', function( e ){
-
-			e.preventDefault();
-
-			$this.toggleClass( 'open' );
-			submenu.toggleClass( 'open' );
-
-			if ( submenu.is( ':hidden' ) ) {
-
-				submenu.attr( 'aria-hidden', 'true' );
-
-			} else {
-
-				submenu.attr( 'aria-hidden', 'false' );
-
-			}
-
-		});
-
-	});*/
+	var parents = $( '.nav-header ul .menu-item-has-children > a' );
 
 	enquire.register( "screen and (max-width: 680px)", {
 
@@ -42,13 +16,14 @@
 			parents.each( function() {
 
 				var $this = $(this);
-				var submenu = $this.children( '.sub-menu' );
+				var submenu = $this.siblings( '.sub-menu');
+				var parent = $this.parents( '.menu-item-has-children' );
 
 				$this.on( 'touchstart', function( e ){
 
 					e.preventDefault();
 
-					$this.toggleClass( 'open' );
+					parent.toggleClass( 'open' );
 					submenu.toggleClass( 'open' );
 
 					//if ( submenu.is( ':hidden' ) ) {
@@ -73,13 +48,14 @@
 			parents.each( function() {
 
 				var $this = $(this);
-				var submenu = $this.children( '.sub-menu' );
+				var submenu = $this.siblings( '.sub-menu');
+				var parent = $this.parents( '.menu-item-has-children' );
 
 				$this.on( 'click', function( e ){
 
 					e.preventDefault();
 
-					$this.toggleClass( 'open' );
+					parent.toggleClass( 'open' );
 					submenu.toggleClass( 'open' );
 
 					//if ( submenu.is( ':hidden' ) ) {
@@ -108,13 +84,14 @@
 			parents.each( function() {
 
 				var $this = $(this);
-				var submenu = $this.children( '.sub-menu' );
+				var submenu = $this.siblings( '.sub-menu');
+				var parent = $this.parents( '.menu-item-has-children' );
 
 				$this.on( 'click', function( e ){
 
 					e.preventDefault();
 
-					$this.toggleClass( 'open' );
+					parent.toggleClass( 'open' );
 					submenu.toggleClass( 'open' );
 
 					//if ( submenu.is( ':hidden' ) ) {
@@ -139,13 +116,14 @@
 			parents.each( function() {
 
 				var $this = $(this);
-				var submenu = $this.children( '.sub-menu' );
+				var submenu = $this.siblings( '.sub-menu');
+				var parent = $this.parents( '.menu-item-has-children' );
 
 				$this.on( 'touchstart', function( e ){
 
 					e.preventDefault();
 
-					$this.toggleClass( 'open' );
+					parent.toggleClass( 'open' );
 					submenu.toggleClass( 'open' );
 
 					//if ( submenu.is( ':hidden' ) ) {

@@ -5,19 +5,21 @@
 	background-repeat 	: no-repeat;
 	background-size 	: cover;
 	overflow 			: auto;
+	position 			: relative;
 	transition 			: $trans__default;
 
 	@media only screen and (min-width: $bp__real_menu_button+1) {
 		height 		: 471px;
 		overflow 	: visible;
 
-		.home & {
-			height: 645px;
+		.home.city & {
+			background 	: transparent;
+			height 		: 645px;
 		}
 
 		.fire &,
 		.police & {
-			height: 472px;
+			height: 472px !important;
 		}
 	}
 
@@ -28,6 +30,12 @@
 	.wrap {
 		max-width 	: none;
 		padding 	: 0;
+
+		.home.city & {
+			@media only screen and (min-width: $bp__real_menu_button+1) {
+				display: none;
+			}
+		}
 	}
 }
 
@@ -44,14 +52,14 @@
 		margin: 97px 0;
 
 		.home & {
-			margin: 130px 0;
+			margin: 0;
 		}
 
 		&.open-dept {
 			margin: 17px 0;
 
 			.home & {
-				margin: 77px 0;
+				margin: 0;
 			}
 
 			.depts-marg &,
@@ -60,11 +68,6 @@
 				margin: 41px 0;
 			}
 
-			/* .fire.home &,
-			.police.home & {
-				margin: 14px 0;
-			} */
-
 		}
 
 		&.open-biz,
@@ -72,7 +75,7 @@
 			margin: 78px 0;
 
 			.home & {
-				margin: 121px 0;
+				margin: 0;
 
 				.open-dept {
 					margin: 18px 0;
@@ -95,49 +98,49 @@
 		display 		: block;
 		text-decoration : none;
 	}
+} // .site-title
 
-	.logo {
-		filter 			: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=3, OffY=3, Color='#020202')";
-		//filter 			: url(#drop-shadow);
-		-webkit-filter 	: drop-shadow( 3px 3px 0px $transdark );
-		filter 			: drop-shadow( 3px 3px 0px $transdark );
-		height 			: 125px;
-		width 			: 290px;
-		transition 		: $trans__default;
+svg.logo {
+	filter 			: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=3, OffY=3, Color='#020202')";
+	//filter 			: url(#drop-shadow);
+	-webkit-filter 	: drop-shadow( 3px 3px 0px $transdark );
+	filter 			: drop-shadow( 3px 3px 0px $transdark );
+	height 			: 125px;
+	width 			: 290px;
+	transition 		: $trans__default;
 
-		@media only screen and (min-width: $bp__real_menu_button+1) {
-			height 	: 151px;
-			width 	: 350px;
+	@media only screen and (min-width: $bp__real_menu_button+1) {
+		height 	: 151px;
+		width 	: 350px;
+
+		.home & {
+			height 	: 258px;
+			width 	: 600px;
+		}
+
+		.open-dept & {
 
 			.home & {
-				height 	: 258px;
-				width 	: 600px;
+				height 	: 204px;
+				width 	: 475px;
 			}
 
-			.open-dept & {
-
-				.home & {
-					height 	: 204px;
-					width 	: 475px;
-				}
-
-				.home.police &,
-				.home.fire & {
-					height 	: 151px;
-					width 	: 350px;
-				}
+			.home.police &,
+			.home.fire & {
+				height 	: 151px;
+				width 	: 350px;
 			}
+		}
 
-			.open-biz & {
+		.open-biz & {
 
-				.home & {
-					height 	: 237px;
-					width 	: 550px;
-				}
+			.home & {
+				height 	: 237px;
+				width 	: 550px;
 			}
-		} // bp
-	} // .logo
-} // .site-title
+		}
+	} // bp
+} // .logo
 
 .site-description {
 	text-align: center;

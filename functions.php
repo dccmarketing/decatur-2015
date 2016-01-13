@@ -42,6 +42,9 @@ function decatur_2015_setup() {
 	 */
 	add_theme_support( 'post-thumbnails' );
 
+	// Add super tiny images for blurred mobile bg images
+	add_image_size( 'super-tiny', 100, 54 );
+
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array(
 		'primary' => esc_html__( 'Primary Menu', 'decatur-2015' )
@@ -178,5 +181,10 @@ require get_template_directory() . '/inc/employees.php';
  * Load Now Hiring Tweaker
  */
 require get_template_directory() . '/inc/now-hiring.php';
+
+/**
+ * Load Soliloquy Tweaker
+ */
+require get_template_directory() . '/inc/soliloquy.php';
 
 

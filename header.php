@@ -42,28 +42,9 @@ do_action( 'tha_body_top' );
 
 	?><header id="masthead" class="site-header <?php echo $decatur_2015_themekit->get_header_class(); ?>" role="banner"><?php
 
-		get_template_part( 'menus/menu', 'header' );
-
 		do_action( 'tha_header_top' );
 
-		?><div class="wrap wrap-header">
-			<div class="site-branding"><?php
-
-			if ( is_front_page() && is_home() ) {
-
-				?><h1 class="site-title"><a class="link-logo" href="<?php echo esc_url( get_site_url( 1, '/' ) ); ?>" rel="home"><span class="screen-reader-text"><?php bloginfo( 'name' ); ?></span><?php $decatur_2015_themekit->the_svg( 'logo' ); ?></a></h1><?php
-
-			} else {
-
-				?><p class="site-title <?php echo $decatur_2015_themekit->get_header_class(); ?>"><a class="link-logo" href="<?php echo esc_url( get_site_url( 1, '/' ) ); ?>" rel="home"><span class="screen-reader-text"><?php bloginfo( 'name' ); ?></span><?php $decatur_2015_themekit->the_svg( 'logo' ); ?></a></p><?php
-
-			}
-
-			?></div><!-- .site-branding --><?php
-
-			get_template_part( 'menus/menu', 'primary' );
-
-		?></div><!-- .header_wrap --><?php
+		get_template_part( 'template-parts/content', 'logo' );
 
 		do_action( 'tha_header_bottom' );
 

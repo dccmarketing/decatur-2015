@@ -91,6 +91,8 @@ global $decatur_2015_themekit;
 
 ?></div><!-- #page --><?php
 
+wp_referer_field();
+
 wp_footer();
 
 do_action( 'tha_body_bottom' );

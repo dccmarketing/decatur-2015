@@ -56,6 +56,8 @@ class decatur_2015_Actions_and_Filters {
 		add_filter( 'sm-location-cpt-args', array( $this, 'add_location_image' ) );
 		add_action( 'tha_content_bottom', array( $this, 'footer_logos' ) );
 		add_action( 'tha_content_while_after', array( $this, 'home_news_link' ) );
+		add_action( 'tha_header_top', array( $this, 'site_header_top' ) );
+		add_action( 'tha_header_bottom', array( $this, 'site_header_bottom' ) );
 
 		add_action( 'tha_sidebars_before', array( $this, 'sidebars_employees' ) );
 		add_action( 'tha_sidebars_before', array( $this, 'sidebars_jobs' ) );
@@ -278,10 +280,10 @@ class decatur_2015_Actions_and_Filters {
 	 */
 	public function add_mime_types( $post_mime_types ) {
 
-	    $post_mime_types['application/pdf'] = array( esc_html__( 'PDFs', 'decatur-2015' ), esc_html__( 'Manage PDFs', 'decatur-2015' ), _n_noop( 'PDF <span class="count">(%s)</span>', 'PDFs <span class="count">(%s)</span>' ) );
-	    $post_mime_types['text/x-vcard'] = array( esc_html__( 'vCards', 'decatur-2015' ), esc_html__( 'Manage vCards', 'decatur-2015' ), _n_noop( 'vCard <span class="count">(%s)</span>', 'vCards <span class="count">(%s)</span>' ) );
+		$post_mime_types['application/pdf'] = array( esc_html__( 'PDFs', 'decatur-2015' ), esc_html__( 'Manage PDFs', 'decatur-2015' ), _n_noop( 'PDF <span class="count">(%s)</span>', 'PDFs <span class="count">(%s)</span>' ) );
+		$post_mime_types['text/x-vcard'] = array( esc_html__( 'vCards', 'decatur-2015' ), esc_html__( 'Manage vCards', 'decatur-2015' ), _n_noop( 'vCard <span class="count">(%s)</span>', 'vCards <span class="count">(%s)</span>' ) );
 
-	    return $post_mime_types;
+		return $post_mime_types;
 
 	} // add_mime_types
 
@@ -326,6 +328,8 @@ class decatur_2015_Actions_and_Filters {
 	 */
 	public function background_images() {
 
+		//if ( is_front_page() && is_main_site() ) { return; }
+
 		global $decatur_2015_themekit;
 
 		$output = '';
@@ -346,15 +350,31 @@ class decatur_2015_Actions_and_Filters {
 		if ( is_int( $image ) ) {
 
 			$images 	= wp_prepare_attachment_for_js( $image );
-			$image 		= $images['sizes']['full']['url'];
 
+			//showme( $images );
+
+			$image 		= $images['sizes']['full']['url'];
+			$supertiny 	= $images['sizes']['super-tiny']['url'];
 
 		}
 
-		if ( ! empty( $image ) ) {
+
+		if ( ! empty( $image ) || ! empty( $supertiny ) ) {
 
 			$output .= '<style>';
-			$output .= '@media screen and (min-width:768px){.site-header{background-image:url(' . $image . ');}';
+
+			if ( ! empty( $supertiny ) ) {
+
+				$output .= '@media screen and (max-width:767px){.site-header{background-image:url(' . $supertiny . ');}';
+
+			}
+
+			if ( ! empty( $image ) ) {
+
+				$output .= '@media screen and (min-width:768px){.site-header{background-image:url(' . $image . ');}';
+
+			}
+
 			$output .= '</style>';
 
 		}
@@ -563,7 +583,15 @@ class decatur_2015_Actions_and_Filters {
 
 		$pageID = get_theme_mod( 'home_news_url' );
 
-		?><div class="link-home-news"><a href="<?php echo esc_url( get_permalink( $pageID ) ); ?>"><?php esc_html_e( get_theme_mod( 'home_news_text' ), 'decatur-2015' ) ?></a></div><?php
+		?><div class="link-home-news"><a href="<?php
+
+			echo esc_url( get_permalink( $pageID ) );
+
+		?>"><?php
+
+			esc_html_e( get_theme_mod( 'home_news_text' ), 'decatur-2015' );
+
+		?></a></div><?php
 
 	} // home_news_link()
 
@@ -673,6 +701,12 @@ class decatur_2015_Actions_and_Filters {
 
 		}
 
+		if ( is_main_site() ) {
+
+			$classes[] = 'city';
+
+		}
+
 		// Adds a class of group-blog to blogs with more than 1 published author.
 		if ( is_multi_author() ) {
 
@@ -719,7 +753,7 @@ class decatur_2015_Actions_and_Filters {
 
 		$defaults['page_template'] = esc_html( 'Page Template', 'decatur-2015' );
 
-	    return $defaults;
+		return $defaults;
 
 	} // page_template_column_head()
 
@@ -781,8 +815,6 @@ class decatur_2015_Actions_and_Filters {
 		$sidebar 	= '';
 		$terms 		= get_the_terms( $post->ID, 'department' );
 
-		//showme( $terms );
-
 		foreach ( $terms as $term ) {
 
 			if ( 'city-administration' === $term->slug ) {
@@ -797,8 +829,6 @@ class decatur_2015_Actions_and_Filters {
 
 		} // foreach
 
-		//showme( $sidebar );
-
 		if ( empty( $sidebar ) ) { return; }
 
 		get_sidebar( $sidebar );
@@ -811,8 +841,6 @@ class decatur_2015_Actions_and_Filters {
 	public function sidebars_jobs() {
 
 		global $post;
-
-		//showme( $post );
 
 		if ( 'job' !== get_post_type( $post ) ) { return; }
 
@@ -831,13 +859,9 @@ class decatur_2015_Actions_and_Filters {
 
 		global $post;
 
-		//showme( $post );
-
 		if( 'page' === get_post_type( $post ) ) {
 
 			$rents = get_post_ancestors( $post );
-
-			//showme( $rents );
 
 			$parents = array();
 
@@ -848,8 +872,6 @@ class decatur_2015_Actions_and_Filters {
 			}
 
 			if ( empty( $parents ) ) {
-
-				//showme( $post );
 
 				switch ( $post->post_name ) {
 
@@ -888,8 +910,6 @@ class decatur_2015_Actions_and_Filters {
 				}
 
 			} else {
-
-				//showme( $parents );
 
 				foreach ( $parents as $parent ) {
 
@@ -932,6 +952,36 @@ class decatur_2015_Actions_and_Filters {
 		get_sidebar( $sidebar );
 
 	} // sidebars_pages()
+
+	/**
+	 * Adds the primary menu to the bottom of the header
+	 *
+	 * @return 		mixed 		The primary menu
+	 */
+	public function site_header_bottom() {
+
+		get_template_part( 'menus/menu', 'primary' );
+
+	} // site_header_top()
+
+	/**
+	 * Adds a slider to the homepage then adds the header menu.
+	 *
+	 * @return 		mixed 		The top header content
+	 */
+	public function site_header_top() {
+
+		if ( is_front_page() && function_exists( 'soliloquy' ) ) {
+
+			soliloquy( 'home', 'slug' );
+
+		}
+
+		get_template_part( 'menus/menu', 'header' );
+
+	} // site_header_top()
+
+
 
 	/**
 	 * Changes the breadcrumbs on subsites to make the home crumbs the main site
@@ -983,8 +1033,6 @@ class decatur_2015_Actions_and_Filters {
 		return $new;
 
 	} // subsite_link_home()
-
-
 
 	/**
 	 * Unlinks breadcrumbs that are private pages

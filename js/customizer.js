@@ -68,9 +68,16 @@
 			$( '.zip' ).text( to );
 		} );
 	} );
+
 	wp.customize( 'phone_number', function( value ) {
 		value.bind( function( to ) {
 			$( '.phone-number' ).text( to );
+		} );
+	} );
+
+	wp.customize( 'home_news_text', function( value ) {
+		value.bind( function( to ) {
+			$( '.link-home-news a' ).text( to );
 		} );
 	} );
 

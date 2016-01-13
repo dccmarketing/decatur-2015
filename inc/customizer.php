@@ -428,27 +428,6 @@ function decatur_2015_register_fields( $wp_customize ) {
 
 	// Home Section Fields
 
-	// Home Page Video URL Field
-	$wp_customize->add_setting(
-		'homevideo',
-		array(
-			'default'  	=> '',
-			'transport' => 'postMessage'
-		)
-	);
-	$wp_customize->add_control(
-		'homevideo',
-		array(
-			'description' 	=> esc_html__( 'Paste the YouTube URL to feature on the home page.', 'decatur-2015' ),
-			'label' => esc_html__( 'Home Page Video', 'decatur-2015' ),
-			'priority' => 10,
-			'section' => 'homepage',
-			'settings' => 'homevideo',
-			'type' => 'url'
-		)
-	);
-	$wp_customize->get_setting( 'homevideo' )->transport = 'postMessage';
-
 	// Homepage News Link Text
 	$wp_customize->add_setting(
 		'home_news_text',
@@ -482,7 +461,7 @@ function decatur_2015_register_fields( $wp_customize ) {
 		'home_news_url',
 		array(
 			'description' 	=> esc_html__( '', 'decatur-2015' ),
-			'label' => esc_html__( 'Select Internal Page', 'decatur-2015' ),
+			'label' => esc_html__( 'Homepage News Link URL', 'decatur-2015' ),
 			'priority' => 10,
 			'section' => 'homepage',
 			'settings' => 'home_news_url',
