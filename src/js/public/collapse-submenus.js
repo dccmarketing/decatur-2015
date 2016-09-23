@@ -7,56 +7,75 @@
 	var parents = document.querySelectorAll( '.submenu-widget .menu-item-has-children' );
 	if ( ! parents ) { return; }
 
-	for ( var i = 0; i < parents.length; i++ ) {
+	/**
+	 * Returns the event target.
+	 *
+	 * @param 		object 		event 		The event.
+	 * @return 		object 		target 		The event target.
+	 */
+	function getEventTarget( event ) {
 
-		var parent = parents[i];
-		var clicker = parent.querySelector( '.show-hide' );
-		if ( ! clicker ) { return; }
+		event = event || window.event;
 
-		var submenu = parent.querySelector( '.sub-menu' );
-		if ( ! submenu ) { return; }
+		return event.target || event.srcElement;
 
-		var current = submenu.querySelector( '.current-menu-item' );
+	} // getEventTarget()
 
-		if ( current ) {
+	/**
+	 * Processes the event and call the correct
+	 * action based on the event target.
+	 *
+	 * @param 		object 		event 		The event.
+	 */
+	function processEvent( event ) {
+
+		var target = getEventTarget( event );
+		var menuItem = this;
+
+		event.preventDefault();
+		event.stopPropagation();
+		event.cancelBubble = true;
+
+		if ( target.matches( '.show-hide' ) ) {
+
+			var submenu = menuItem.querySelector( '.sub-menu' );
 
 			$(submenu).slideToggle(250);
 
-			parent.classList.toggle( "open" );
+			menuItem.classList.toggle( "open" );
 
-			if ( parent.classList.contains( "open" ) ) {
+			if ( menuItem.classList.contains( "open" ) ) {
 
-				clicker.innerHTML = '-';
+				target.innerHTML = '-';
 
 			} else {
 
-				clicker.innerHTML = '+';
+				target.innerHTML = '+';
 
 			}
 
 		}
 
-		clicker.addEventListener( 'click', function( event ){
+	} // processEvent()
 
-			event.preventDefault();
+	/**
+	 * Checks if the nodes are empty and if not, sets event
+	 * listeners on each node.
+	 *
+	 * @param 		object 		nodes 		A list of nodes.
+	 */
+	function setEvents( nodes ) {
 
-			$(submenu).slideToggle(250);
+		if ( ! nodes || 0 >= nodes.length ) { return; }
 
-			parent.classList.toggle( "open" );
+		for ( var n = 0; n < nodes.length; n++ ) {
 
-			if ( parent.classList.contains( "open" ) ) {
+			nodes[n].addEventListener( 'click', processEvent );
 
-				this.innerHTML = '-';
+		}
 
-			} else {
+	} // setEvents()
 
-				this.innerHTML = '+';
-
-			}
-
-		});
-
-	}
-
+	setEvents( parents );
 
 } )( jQuery );

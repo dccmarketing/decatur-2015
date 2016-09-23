@@ -253,7 +253,7 @@ class decatur_2015_Actions_and_Filters {
 
 		$role = get_role( 'editor' );
 
-		$role->add_cap( 'edit_theme_options' ); 
+		$role->add_cap( 'edit_theme_options' );
 
 	} // add_editor_caps()
 
@@ -1070,6 +1070,10 @@ class decatur_2015_Actions_and_Filters {
 		} elseif ( 'mayor-and-council' === $parents[0]->post_name && ! isset( $parents[1] ) ) {
 
 			$sidebar = $this->get_sidebar_name( $parents[0]->post_name );
+
+		} elseif ( 'public-information' === $parents[0]->post_name ) {
+
+			return;
 
 		} else {
 
