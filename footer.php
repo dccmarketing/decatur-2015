@@ -80,6 +80,9 @@ global $decatur_2015_themekit;
 					?></ul>
 				</div>
 				<div class="credits"><?php printf( esc_html__( 'Site design and developed by %1$s', 'decatur-2015' ), '<a href="https://dccmarketing.com/" target="_blank">DCC Marketing</a>' ); ?></div>
+				<div class="link-ada">
+					<a href="<?php echo esc_url( get_theme_mod( 'ada_link_url' ) ); ?>" id="ada-link-text"><?php echo esc_html( get_theme_mod( 'ada_link_text' ) ); ?></a>
+				</div>
 			</div><!-- .site-info -->
 		</div><!-- .wrap-footer --><?php
 

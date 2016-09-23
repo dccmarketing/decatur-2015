@@ -88,15 +88,13 @@ class decatur_2015_Menukit {
 		if ( 'header' !== $args->theme_location ) { return $item_output; }
 		if ( ! in_array( 'menu-item-has-children', $item->classes ) ) { return $item_output; }
 
-		global $decatur_2015_themekit;
-
 		$atts 	= $this->get_attributes( $item );
 		$output = '';
 
 		$output .= '<div class="wrap-parent">';
 		$output .= '<input class="hidden-checkbox" type="checkbox">';
 		$output .= '<label class="text">' . $item->title . '</label>';
-		$output .= '<span class="children">' . $decatur_2015_themekit->get_svg( 'arrow-down' ) . '</span>';
+		$output .= '<span class="children">' . decatur_2015_get_svg( 'arrow-down' ) . '</span>';
 		$output .= '</div>';
 
 		return $output;
@@ -112,7 +110,7 @@ class decatur_2015_Menukit {
 
 		$title = sanitize_title( $menu_item->title );
 
-		if ( ! in_array( $title, $menu_item->classes ) ) {
+		if ( empty( $menu_item->classes ) || ! in_array( $title, $menu_item->classes ) ) {
 
 			$menu_item->classes[] = $title;
 
@@ -239,15 +237,13 @@ class decatur_2015_Menukit {
 		if ( 'header' !== $args->theme_location ) { return $item_output; }
 		if ( ! in_array( 'menu-item-has-children', $item->classes ) ) { return $item_output; }
 
-		global $decatur_2015_themekit;
-
 		$atts 	= $this->get_attributes( $item );
 		$output = '';
 
 		$output .= '<a href="' . $item->url . '">';
 		$output .= '<span class="text">' . $item->title . '</span>';
 		//$output .= '<span class="dashicons dashicons-arrow-down"></span>';
-		$output .= '<span class="children">' . $decatur_2015_themekit->get_svg( 'arrow-down' ) . '</span>';
+		$output .= '<span class="children">' . decatur_2015_get_svg( 'arrow-down' ) . '</span>';
 		$output .= '</a>';
 
 		return $output;
@@ -398,13 +394,11 @@ class decatur_2015_Menukit {
 	 */
 	public function get_svg_by_class( $classes ) {
 
-		global $decatur_2015_themekit;
-
 		$output = '';
 
 		foreach ( $classes as $class ) {
 
-			$check = $decatur_2015_themekit->get_svg( $class );
+			$check = decatur_2015_get_svg( $class );
 
 			if ( ! is_null( $check ) ) { $output .= $check; break; }
 
@@ -634,4 +628,3 @@ class decatur_2015_Menukit {
  * Make an instance so its ready to be used
  */
 $decatur_2015_menukit = new decatur_2015_Menukit();
-

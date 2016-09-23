@@ -52,20 +52,6 @@ function decatur_2015_register_panels( $wp_customize ) {
 		)
 	);
 
-
-	/*
-	// Theme Options Panel
-	$wp_customize->add_panel( 'theme_options',
-		array(
-			'capability'  		=> 'edit_theme_options',
-			'description'  		=> esc_html__( 'Options for City of Decatur 2015', 'decatur-2015' ),
-			'priority'  		=> 10,
-			'theme_supports'  	=> '',
-			'title'  			=> esc_html__( 'Theme Options', 'decatur-2015' ),
-		)
-	);
-	*/
-
 } // decatur_2015_register_panels()
 
 /**
@@ -124,6 +110,19 @@ function decatur_2015_register_sections( $wp_customize ) {
 		)
 	);
 
+	// Footer Section
+	$wp_customize->add_section( 'footer',
+		array(
+			'active_callback' 	=> '',
+			'capability'  		=> 'edit_theme_options',
+			'description'  		=> esc_html__( 'Footer', 'decatur-2015' ),
+			'panel' 			=> 'theme_options',
+			'priority'  		=> 10,
+			'theme_supports'  	=> '',
+			'title'  			=> esc_html__( 'Footer', 'decatur-2015' ),
+		)
+	);
+
 	// Quick Links Sections
 	foreach ( range( 1, 10 ) as $num ) {
 
@@ -138,21 +137,6 @@ function decatur_2015_register_sections( $wp_customize ) {
 		);
 
 	}
-
-
-
-	/*
-	// New Section
-	$wp_customize->add_section( 'new_section',
-		array(
-			'capability' 	=> 'edit_theme_options',
-			'description' 	=> esc_html__( 'New Customizer Section', 'decatur-2015' ),
-			'panel' 		=> 'theme_options',
-			'priority' 		=> 10,
-			'title' 		=> esc_html__( 'New Section', 'decatur-2015' )
-		)
-	);
-	*/
 
 } // decatur_2015_register_sections()
 
@@ -633,400 +617,54 @@ function decatur_2015_register_fields( $wp_customize ) {
 
 
 
-	/*
-	// Fields & Controls
-
-	// Text Field
+	// ADA Link Text Field
 	$wp_customize->add_setting(
-		'text_field',
+		'ada_link_text',
 		array(
-			'default'  	=> '',
-			'transport' => 'postMessage'
+			'capability' 		=> 'edit_theme_options',
+			'default'  			=> '',
+			'sanitize_callback' => 'sanitize_text_field',
+			'transport' 		=> 'postMessage',
+			'type' 				=> 'theme_mod'
 		)
 	);
 	$wp_customize->add_control(
-		'text_field',
+		'ada_link_text',
 		array(
-			'description' 	=> esc_html__( '', 'decatur-2015' ),
-			'label'  	=> esc_html__( 'Text Field', 'decatur-2015' ),
-			'priority' => 10,
-			'section'  	=> 'new_section',
-			'settings' 	=> 'text_field',
-			'type' 		=> 'text'
+			'active_callback' 	=> '',
+			'description' 		=> esc_html__( '', 'decatur-2015' ),
+			'label'  			=> esc_html__( 'ADA Link Text', 'decatur-2015' ),
+			'priority' 			=> 10,
+			'section'  			=> 'footer',
+			'settings' 			=> 'ada_link_text',
+			'type' 				=> 'text'
 		)
 	);
-	$wp_customize->get_setting( 'text_field' )->transport = 'postMessage';
+	$wp_customize->get_setting( 'ada_link_text' )->transport = 'postMessage';
 
-
-
-	// URL Field
+	// ADA Link URL Field
 	$wp_customize->add_setting(
-		'url_field',
+		'ada_link_url',
 		array(
-			'default'  	=> '',
-			'transport' => 'postMessage'
+			'capability' 		=> 'edit_theme_options',
+			'default'  			=> '',
+			'sanitize_callback' => 'esc_url_raw',
+			'transport' 		=> 'postMessage',
+			'type' 				=> 'theme_mod'
 		)
 	);
 	$wp_customize->add_control(
-		'url_field',
+		'ada_link_url',
 		array(
-			'description' 	=> esc_html__( '', 'decatur-2015' ),
-			'label' => esc_html__( 'URL Field', 'decatur-2015' ),
-			'priority' => 10,
-			'section' => 'new_section',
-			'settings' => 'url_field',
-			'type' => 'url'
+			'active_callback' 	=> '',
+			'description' 		=> esc_html__( '', 'decatur-2015' ),
+			'label'  			=> esc_html__( 'ADA Link URL', 'decatur-2015' ),
+			'priority' 			=> 10,
+			'section'  			=> 'footer',
+			'settings' 			=> 'ada_link_url',
+			'type' 				=> 'url'
 		)
 	);
-	$wp_customize->get_setting( 'url_field' )->transport = 'postMessage';
-
-
-
-	// Email Field
-	$wp_customize->add_setting(
-		'email_field',
-		array(
-			'default'  	=> '',
-			'transport' => 'postMessage'
-		)
-	);
-	$wp_customize->add_control(
-		'email_field',
-		array(
-			'description' 	=> esc_html__( '', 'decatur-2015' ),
-			'label' => esc_html__( 'Email Field', 'decatur-2015' ),
-			'priority' => 10,
-			'section' => 'new_section',
-			'settings' => 'email_field',
-			'type' => 'email'
-		)
-	);
-	$wp_customize->get_setting( 'email_field' )->transport = 'postMessage';
-
-	// Date Field
-	$wp_customize->add_setting(
-		'date_field',
-		array(
-			'default'  	=> '',
-			'transport' => 'postMessage'
-		)
-	);
-	$wp_customize->add_control(
-		'date_field',
-		array(
-			'description' 	=> esc_html__( '', 'decatur-2015' ),
-			'label' => esc_html__( 'Date Field', 'decatur-2015' ),
-			'priority' => 10,
-			'section' => 'new_section',
-			'settings' => 'date_field',
-			'type' => 'date'
-		)
-	);
-	$wp_customize->get_setting( 'date_field' )->transport = 'postMessage';
-
-
-	// Checkbox Field
-	$wp_customize->add_setting(
-		'checkbox_field',
-		array(
-			'default'  	=> 'true',
-			'transport' => 'postMessage'
-		)
-	);
-	$wp_customize->add_control(
-		'checkbox_field',
-		array(
-			'description' 	=> esc_html__( '', 'decatur-2015' ),
-			'label' => esc_html__( 'Checkbox Field', 'decatur-2015' ),
-			'priority' => 10,
-			'section' => 'new_section',
-			'settings' => 'checkbox_field',
-			'type' => 'checkbox'
-		)
-	);
-	$wp_customize->get_setting( 'checkbox_field' )->transport = 'postMessage';
-
-
-
-
-	// Password Field
-	$wp_customize->add_setting(
-		'password_field',
-		array(
-			'default'  	=> '',
-			'transport' => 'postMessage'
-		)
-	);
-	$wp_customize->add_control(
-		'password_field',
-		array(
-			'description' 	=> esc_html__( '', 'decatur-2015' ),
-			'label' => esc_html__( 'Password Field', 'decatur-2015' ),
-			'priority' => 10,
-			'section' => 'new_section',
-			'settings' => 'password_field',
-			'type' => 'password'
-		)
-	);
-	$wp_customize->get_setting( 'password_field' )->transport = 'postMessage';
-
-
-
-	// Radio Field
-	$wp_customize->add_setting(
-		'radio_field',
-		array(
-			'default'  	=> 'choice1',
-			'transport' => 'postMessage'
-		)
-	);
-	$wp_customize->add_control(
-		'radio_field',
-		array(
-			'choices' => array(
-				'choice1' => esc_html__( 'Choice 1', 'decatur-2015' ),
-				'choice2' => esc_html__( 'Choice 2', 'decatur-2015' ),
-				'choice3' => esc_html__( 'Choice 3', 'decatur-2015' )
-			),
-			'description' 	=> esc_html__( '', 'decatur-2015' ),
-			'label' => esc_html__( 'Radio Field', 'decatur-2015' ),
-			'priority' => 10,
-			'section' => 'new_section',
-			'settings' => 'radio_field',
-			'type' => 'radio'
-		)
-	);
-	$wp_customize->get_setting( 'radio_field' )->transport = 'postMessage';
-
-
-
-	// Select Field
-	$wp_customize->add_setting(
-		'select_field',
-		array(
-			'default'  	=> 'choice1',
-			'transport' => 'postMessage'
-		)
-	);
-	$wp_customize->add_control(
-		'select_field',
-		array(
-			'choices' => array(
-				'choice1' => esc_html__( 'Choice 1', 'decatur-2015' ),
-				'choice2' => esc_html__( 'Choice 2', 'decatur-2015' ),
-				'choice3' => esc_html__( 'Choice 3', 'decatur-2015' )
-			),
-			'description' 	=> esc_html__( '', 'decatur-2015' ),
-			'label' => esc_html__( 'Select Field', 'decatur-2015' ),
-			'priority' => 10,
-			'section' => 'new_section',
-			'settings' => 'select_field',
-			'type' => 'select'
-		)
-	);
-	$wp_customize->get_setting( 'select_field' )->transport = 'postMessage';
-
-
-
-	// Textarea Field
-	$wp_customize->add_setting(
-		'textarea_field',
-		array(
-			'default'  	=> '',
-			'transport' => 'postMessage'
-		)
-	);
-	$wp_customize->add_control(
-		'textarea_field',
-		array(
-			'description' 	=> esc_html__( '', 'decatur-2015' ),
-			'label' => esc_html__( 'Textarea Field', 'decatur-2015' ),
-			'priority' => 10,
-			'section' => 'new_section',
-			'settings' => 'textarea_field',
-			'type' => 'textarea'
-		)
-	);
-	$wp_customize->get_setting( 'textarea_field' )->transport = 'postMessage';
-
-
-
-	// Range Field
-	$wp_customize->add_setting(
-		'range_field',
-		array(
-			'default'  	=> '',
-			'transport' => 'postMessage'
-		)
-	);
-	$wp_customize->add_control(
-		'range_field',
-		array(
-			'description' 	=> esc_html__( '', 'decatur-2015' ),
-			'input_attrs' => array(
-				'class' => 'range-field',
-				'max' => 100,
-				'min' => 0,
-				'step' => 1,
-				'style' => 'color: #020202'
-			),
-			'label' => esc_html__( 'Range Field', 'decatur-2015' ),
-			'priority' => 10,
-			'section' => 'new_section',
-			'settings' => 'range_field',
-			'type' => 'range'
-		)
-	);
-	$wp_customize->get_setting( 'range_field' )->transport = 'postMessage';
-
-
-
-	// Page Select Field
-	$wp_customize->add_setting(
-		'select_page_field',
-		array(
-			'default'  	=> '',
-			'transport' => 'postMessage'
-		)
-	);
-	$wp_customize->add_control(
-		'select_page_field',
-		array(
-			'description' 	=> esc_html__( '', 'decatur-2015' ),
-			'label' => esc_html__( 'Select Page', 'decatur-2015' ),
-			'priority' => 10,
-			'section' => 'new_section',
-			'settings' => 'select_page_field',
-			'type' => 'dropdown-pages'
-		)
-	);
-	$wp_customize->get_setting( 'dropdown-pages' )->transport = 'postMessage';
-
-
-
-	// Color Chooser Field
-	$wp_customize->add_setting(
-		'color_field',
-		array(
-			'default'  	=> '#ffffff',
-			'transport' => 'postMessage'
-		)
-	);
-	$wp_customize->add_control(
-		new WP_Customize_Color_Control(
-			$wp_customize,
-			'color_field',
-			array(
-				'description' 	=> esc_html__( '', 'decatur-2015' ),
-				'label' => esc_html__( 'Color Field', 'decatur-2015' ),
-				'priority' => 10,
-				'section' => 'new_section',
-				'settings' => 'color_field'
-			),
-		)
-	);
-	$wp_customize->get_setting( 'color_field' )->transport = 'postMessage';
-
-
-
-	// File Upload Field
-	$wp_customize->add_setting( 'file_upload' );
-	$wp_customize->add_control(
-		new WP_Customize_Image_Control(
-			$wp_customize,
-			'file_upload',
-			array(
-				'description' 	=> esc_html__( '', 'decatur-2015' ),
-				'label' => esc_html__( 'File Upload', 'decatur-2015' ),
-				'priority' => 10,
-				'section' => 'new_section',
-				'settings' => 'file_upload'
-			),
-		)
-	);
-
-
-
-	// Image Upload Field
-	$wp_customize->add_setting(
-		'image_upload',
-		array(
-			'default' => '',
-			'transport' => 'postMessage'
-		)
-	);
-	$wp_customize->add_control(
-		new WP_Customize_Image_Control(
-			$wp_customize,
-			'image_upload',
-			array(
-				'description' 	=> esc_html__( '', 'decatur-2015' ),
-				'label' => esc_html__( 'Image Field', 'decatur-2015' ),
-				'priority' => 10,
-				'section' => 'new_section',
-				'settings' => 'image_upload'
-			)
-		)
-	);
-	$wp_customize->get_setting( 'image_upload' )->transport = 'postMessage';
-
-
-
-	// Media Upload Field
-	// Can be used for images
-	// Returns the image ID, not a URL
-	$wp_customize->add_setting(
-		'media_upload',
-		array(
-			'default' => '',
-			'transport' => 'postMessage'
-		)
-	);
-	$wp_customize->add_control(
-		new WP_Customize_Media_Control(
-			$wp_customize,
-			'media_upload',
-			array(
-				'description' 	=> esc_html__( '', 'decatur-2015' ),
-				'label' => esc_html__( 'Media Field', 'decatur-2015' ),
-				'mime_type' => '',
-				'priority' => 10,
-				'section' => 'new_section',
-				'settings' => 'media_upload'
-			)
-		)
-	);
-	$wp_customize->get_setting( 'media_upload' )->transport = 'postMessage';
-
-
-
-
-	// Cropped Image Field
-	$wp_customize->add_setting(
-		'cropped_image',
-		array(
-			'default' => '',
-			'transport' => 'postMessage'
-		)
-	);
-	$wp_customize->add_control(
-		new WP_Customize_Cropped_Image_Control(
-			$wp_customize,
-			'cropped_image',
-			array(
-				'description' 	=> esc_html__( '', 'decatur-2015' ),
-				'flex_height' => '',
-				'flex_width' => '',
-				'height' => '1080',
-				'priority' => 10,
-				'section' => 'new_section',
-				'settings' => 'cropped_image',
-				width' => '1920'
-			)
-		)
-	);
-	$wp_customize->get_setting( 'cropped_image' )->transport = 'postMessage';
-	*/
 
 } // decatur_2015_register_fields()
 
@@ -1103,9 +741,6 @@ function decatur_2015_header_output() {
 function decatur_2015_linktype_callback1( $control ) {
 
 	$radio_setting = $control->manager->get_setting('linktype1')->value();
-
-	//wp_die( print_r( $radio_setting ) );
-	//wp_die( print_r( $control->id ) );
 
 	if ( 'externallinkurl1' === $control->id && 'external' === $radio_setting ) { return true; }
 	if ( 'internalpageid1' === $control->id && 'internal' === $radio_setting ) { return true; }
@@ -1290,5 +925,3 @@ function decatur_2015_live_preview() {
 	wp_enqueue_script( 'decatur_2015_customizer', get_template_directory_uri() . '/js/customizer.min.js', array( 'jquery', 'customize-preview' ), '', true );
 
 } // decatur_2015_live_preview()
-
-

@@ -22,7 +22,7 @@ function decatur_2015_setup() {
 	 * If you're building a theme based on _s, use a find and replace
 	 * to change 'decatur-2015' to the name of your theme in all the template files
 	 */
-	load_theme_textdomain( 'decatur-2015', get_template_directory() . '/languages' );
+	load_theme_textdomain( 'decatur-2015', get_template_directory() . '/assets/languages' );
 
 	// Add default posts and comments RSS feed links to head.
 	add_theme_support( 'automatic-feed-links' );
@@ -43,7 +43,8 @@ function decatur_2015_setup() {
 	add_theme_support( 'post-thumbnails' );
 
 	// Add super tiny images for blurred mobile bg images
-	add_image_size( 'super-tiny', 100, 54 );
+	//add_image_size( 'super-tiny', 100, 54 );
+	add_image_size( 'mobile-header', 767, 470 );
 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array(
@@ -61,24 +62,6 @@ function decatur_2015_setup() {
 		'gallery',
 		'caption',
 	) );
-
-	/*
-	 * Enable support for Post Formats.
-	 * See https://developer.wordpress.org/themes/functionality/post-formats/
-	 */
-	/*add_theme_support( 'post-formats', array(
-		'aside',
-		'image',
-		'video',
-		'quote',
-		'link',
-	) );*/
-
-	// Set up the WordPress core custom background feature.
-	add_theme_support( 'custom-background', apply_filters( 'decatur_2015_custom_background_args', array(
-		'default-color' => 'ffffff',
-		'default-image' => '',
-	) ) );
 
 } // decatur_2015_setup()
 endif; // decatur_2015_setup
@@ -119,23 +102,14 @@ function decatur_2015_widgets_init() {
 add_action( 'widgets_init', 'decatur_2015_widgets_init' );
 
 /**
- * Enqueue scripts and styles.
- */
-function decatur_2015_scripts() {
-
-	wp_enqueue_style( 'decatur-2015-style', get_stylesheet_uri() );
-
-	wp_enqueue_script( 'decatur-2015-navigation', get_template_directory_uri() . '/js/navigation.min.js', array(), '20120206', true );
-
-	wp_enqueue_script( 'decatur-2015-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.min.js', array(), '20130115', true );
-
-} // decatur_2015_scripts()
-add_action( 'wp_enqueue_scripts', 'decatur_2015_scripts' );
-
-/**
  * Implement the Custom Header feature.
  */
 //require get_template_directory() . '/inc/custom-header.php';
+
+/**
+ * Load Slushman Imagekit
+ */
+require get_template_directory() . '/inc/imagekit.php';
 
 /**
  * Custom template tags for this theme.
@@ -186,5 +160,3 @@ require get_template_directory() . '/inc/now-hiring.php';
  * Load Soliloquy Tweaker
  */
 require get_template_directory() . '/inc/soliloquy.php';
-
-

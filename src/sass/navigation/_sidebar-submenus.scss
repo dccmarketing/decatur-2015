@@ -1,0 +1,64 @@
+.gksm-custom-menu-widget {
+
+	ul {
+		@extend %listreset;
+
+		li {
+			border 			: 1px solid $gray;
+			display 		: block;
+			font-style 		: italic;
+			font-weight 	: 700;
+			margin-bottom 	: 0.25em;
+			text-transform 	: uppercase;
+
+			a {
+				@include unline( $gray );
+				display 		: block;
+				padding 		: 0.5em;
+				padding-right 	: 0.25em;
+			}
+
+			ul {
+				background-color: $gray;
+				display 		: none;
+
+				li {
+					border 			: none;
+					font-weight 	: 400;
+					margin 			: 0;
+					text-transform 	: capitalize;
+
+					a {
+						@include unline( $light );
+						padding-left: 1em;
+					}
+				}
+			}
+		}
+
+		.current-menu-item {
+			background-color: $red;
+			border-color 	: $red;
+
+			a {
+				color 			: $light;
+			}
+		}
+
+		.menu-item-has-children {
+
+			.show-hide {
+				float 			: right;
+				font-style 		: normal;
+				text-align 		: center;
+				width 			: 2.5em;
+			}
+
+			// &:not(.menu-item-has-children) {
+			// 	.sub-menu {
+			// 		display: none;
+			// 	}
+			// }
+		}
+	}
+}

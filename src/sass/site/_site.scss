@@ -1,0 +1,25 @@
+/*--------------------------------------------------------------
+## Global
+--------------------------------------------------------------*/
+@import "global/header";
+@import "global/footer";
+
+/*--------------------------------------------------------------
+## Primary
+--------------------------------------------------------------*/
+@import "primary/posts-and-pages";
+@import "primary/home";
+@import "primary/asides";
+@import "primary/comments";
+@import "primary/entry-meta";
+
+/*--------------------------------------------------------------
+## Secondary
+--------------------------------------------------------------*/
+@import "secondary/widgets";
+
+.wrap {
+	max-width 	: $size__max-width;
+	margin 		: 0 auto;
+	padding 	: 1em;
+}

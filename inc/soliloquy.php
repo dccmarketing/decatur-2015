@@ -30,7 +30,7 @@ class decatur_2015_Soliloquy {
 
 	public function add_notes() {
 
-		echo '<p class="admin-notes update-nag">' . esc_html__( 'NOTE: Slides for the homepage need to be 1200px by 645px or larger.', 'decatur-2015' ) . '</p>';
+		echo '<p class="admin-notes update-nag">' . esc_html__( 'NOTE: Slides for the homepage need to be at least 1400px wide and 645px tall.', 'decatur-2015' ) . '</p>';
 
 	} //
 
@@ -48,13 +48,11 @@ class decatur_2015_Soliloquy {
 
 		if ( 1 !== $i ) { return $caption; }
 
-		global $decatur_2015_themekit;
-
 		$caption = '';
 		$caption .= '<p class="site-title">';
 		$caption .= '<a href="' . esc_url( site_url() ) . '">';
 		$caption .= '<span class="screen-reader-text">' . esc_html( get_bloginfo( 'name' ) ) . '</span>';
-		$caption .= $decatur_2015_themekit->get_svg( 'logo' );
+		$caption .= decatur_2015_get_svg( 'logo' );
 		$caption .= '</a></p>';
 
 		return $caption;
@@ -127,4 +125,3 @@ class decatur_2015_Soliloquy {
  * Make an instance so its ready to be used
  */
 $decatur_2015_soliloquy = new decatur_2015_Soliloquy();
-

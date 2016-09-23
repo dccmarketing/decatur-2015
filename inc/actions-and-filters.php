@@ -26,14 +26,15 @@ class decatur_2015_Actions_and_Filters {
 
 		add_action( 'init', array( $this, 'disable_emojis' ) );
 		add_action( 'after_setup_theme', array( $this, 'more_setup' ) );
-		add_action( 'wp_enqueue_scripts', array( $this, 'more_scripts_and_styles' ) );
-		add_action( 'login_enqueue_scripts', array( $this, 'login_scripts' ) );
-		add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts_and_styles' ) );
-		add_action( 'tha_body_top', array( $this, 'analytics_code' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_public' ) );
+		add_action( 'login_enqueue_scripts', array( $this, 'enqueue_login' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin' ) );
+		//add_filter( 'script_loader_tag', array( $this, 'async_scripts' ), 10, 2 ); // still troubleshooting this
 		add_filter( 'post_mime_types', array( $this, 'add_mime_types' ) );
 		add_filter( 'upload_mimes', array( $this, 'custom_upload_mimes' ) );
 		add_filter( 'body_class', array( $this, 'page_body_classes' ) );
 		add_action( 'wp_head', array( $this, 'background_images' ) );
+		add_action( 'wp_footer', array( $this, 'initialize_scripts' ), 99 );
 		add_filter( 'excerpt_length', array( $this, 'excerpt_length' ) );
 		add_filter( 'excerpt_more', array( $this, 'excerpt_read_more' ) );
 		add_filter( 'mce_buttons_2', array( $this, 'add_editor_buttons' ) );
@@ -41,9 +42,6 @@ class decatur_2015_Actions_and_Filters {
 		add_filter( 'wpseo_breadcrumb_single_link', array( $this, 'unlink_private_pages' ), 10, 2 );
 		add_filter( 'wpseo_breadcrumb_single_link', array( $this, 'subsite_link_home' ), 10, 2 );
 		add_filter( 'wp_seo_get_bc_title', array( $this, 'remove_private' ) );
-		add_action( 'tha_header_top', array( $this, 'add_hidden_search' ) );
-		add_action( 'tha_header_after', array( $this, 'add_precontent' ) );
-		add_action( 'tha_content_after', array( $this, 'add_postcontent' ) );
 		add_filter( 'manage_page_posts_columns', array( $this, 'page_template_column_head' ), 10 );
 		add_action( 'manage_page_posts_custom_column', array( $this, 'page_template_column_content' ), 10, 2 );
 		add_filter( 'get_search_form', array( $this, 'make_search_button_a_button' ) );
@@ -54,10 +52,23 @@ class decatur_2015_Actions_and_Filters {
 		add_filter( 'wpseo_breadcrumb_links', array( $this, 'breadcrumb_permits_and_forms' ) );
 		add_filter( 'wpseo_breadcrumb_links', array( $this, 'subsite_home_page' ) );
 		add_filter( 'sm-location-cpt-args', array( $this, 'add_location_image' ) );
-		add_action( 'tha_content_bottom', array( $this, 'footer_logos' ) );
-		add_action( 'tha_content_while_after', array( $this, 'home_news_link' ) );
+
+		add_action( 'tha_body_top', array( $this, 'analytics_code' ) );
+
 		add_action( 'tha_header_top', array( $this, 'site_header_top' ) );
+		add_action( 'tha_header_top', array( $this, 'add_hidden_search' ) );
+
 		add_action( 'tha_header_bottom', array( $this, 'site_header_bottom' ) );
+
+		add_action( 'tha_header_after', array( $this, 'add_precontent' ) );
+
+		add_action( 'tha_content_bottom', array( $this, 'footer_logos' ) );
+
+		add_action( 'tha_content_while_before', array( $this, 'page_title' ) );
+
+		add_action( 'tha_content_while_after', array( $this, 'home_news_link' ) );
+
+		add_action( 'tha_content_after', array( $this, 'add_postcontent' ) );
 
 		add_action( 'tha_sidebars_before', array( $this, 'sidebars_employees' ) );
 		add_action( 'tha_sidebars_before', array( $this, 'sidebars_jobs' ) );
@@ -81,45 +92,6 @@ class decatur_2015_Actions_and_Filters {
 		add_image_size( 'homethumb', 250, 188, true );
 
 	} // more_setup()
-
-	/**
-	 * Enqueues scripts and styles for the admin
-	 */
-	public function admin_scripts_and_styles() {
-
-		wp_enqueue_style( 'decatur-2015-admin', get_stylesheet_directory_uri() . '/admin.css' );
-
-	} // admin_scripts_and_styles()
-
-	/**
-	 * Enqueues additional scripts and styles
-	 *
-	 * @return 	void
-	 */
-	public function more_scripts_and_styles() {
-
-		wp_enqueue_style( 'dashicons' );
-		wp_enqueue_script( 'enquire', '//cdnjs.cloudflare.com/ajax/libs/enquire.js/2.1.2/enquire.min.js', array(), '20150804', true );
-		wp_enqueue_script( 'decatur-2015-search', get_template_directory_uri() . '/js/hidden-search.min.js', array( 'jquery' ), '20150807', true );
-
-		if ( ! is_main_site() ) {
-
-			wp_enqueue_script( 'decatur-2015-subsite-expand', get_template_directory_uri() . '/js/subsite-expand.min.js', array( 'jquery', 'enquire' ), '20151020', true );
-
-		} else {
-
-			wp_enqueue_script( 'decatur-2015-mayor-city-mngr-expand-menu', get_template_directory_uri() . '/js/mayor-city-mngr-expand-menu.min.js', array( 'jquery', 'enquire' ), '20151027', true );
-
-		}
-
-		wp_enqueue_script( 'decatur-2015-main-menu-expand', get_template_directory_uri() . '/js/main-menu-expand.min.js', array( 'jquery', 'enquire' ), '20150807', true );
-		wp_enqueue_script( 'decatur-2015-collapse', get_template_directory_uri() . '/js/collapse-submenus.min.js', array( 'jquery' ), '20150812', true );
-		//wp_enqueue_script( 'decatur-2015-responsive-tables', get_template_directory_uri() . '/js/responsive-tables.min.js', array(), '20151008', true );
-		wp_enqueue_script( 'decatur-2015-tabs', get_template_directory_uri() . '/js/tabs.min.js', array( 'jquery', 'jquery-ui-tabs' ), '20151009', true );
-		wp_enqueue_script( 'decatur-2015-open-submenu', get_template_directory_uri() . '/js/check-to-open-submenu.min.js', array( 'jquery', 'enquire' ), '20151014', true );
-		wp_enqueue_style( 'decatur-2015-fonts', $this->fonts_url(), array(), null );
-
-	} // more_scripts_and_styles()
 
 	/**
 	 * Register more widget areas.
@@ -159,6 +131,16 @@ class decatur_2015_Actions_and_Filters {
 		) );
 
 		register_sidebar( array(
+			'name'          => esc_html__( 'City Clerk', 'decatur-2015' ),
+			'id'            => 'sidebar-cityclerk',
+			'description'   => '',
+			'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</aside>',
+			'before_title'  => '<h2 class="widget-title">',
+			'after_title'   => '</h2>',
+		) );
+
+		register_sidebar( array(
 			'name'          => esc_html__( 'Development Services', 'decatur-2015' ),
 			'id'            => 'sidebar-devservices',
 			'description'   => '',
@@ -169,8 +151,28 @@ class decatur_2015_Actions_and_Filters {
 		) );
 
 		register_sidebar( array(
+			'name'          => esc_html__( 'Finance', 'decatur-2015' ),
+			'id'            => 'sidebar-finance',
+			'description'   => '',
+			'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</aside>',
+			'before_title'  => '<h2 class="widget-title">',
+			'after_title'   => '</h2>',
+		) );
+
+		register_sidebar( array(
 			'name'          => esc_html__( 'Human Resources', 'decatur-2015' ),
 			'id'            => 'sidebar-hr',
+			'description'   => '',
+			'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</aside>',
+			'before_title'  => '<h2 class="widget-title">',
+			'after_title'   => '</h2>',
+		) );
+
+		register_sidebar( array(
+			'name'          => esc_html__( 'Licensing', 'decatur-2015' ),
+			'id'            => 'sidebar-licensing',
 			'description'   => '',
 			'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</aside>',
@@ -199,6 +201,16 @@ class decatur_2015_Actions_and_Filters {
 		) );
 
 		register_sidebar( array(
+			'name'          => esc_html__( 'Purchasing', 'decatur-2015' ),
+			'id'            => 'sidebar-purchasing',
+			'description'   => '',
+			'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</aside>',
+			'before_title'  => '<h2 class="widget-title">',
+			'after_title'   => '</h2>',
+		) );
+
+		register_sidebar( array(
 			'name'          => esc_html__( 'Transit', 'decatur-2015' ),
 			'id'            => 'sidebar-transit',
 			'description'   => '',
@@ -219,21 +231,6 @@ class decatur_2015_Actions_and_Filters {
 		) );
 
 	} // more_widget_areas()
-
-	/**
-	 * Enqueues scripts and styles for the login page
-	 *
-	 * @return 	void
-	 */
-	function login_scripts() {
-
-		wp_enqueue_style( 'decatur-2015-login', get_stylesheet_directory_uri() . '/login.css', 10, 2 );
-		wp_enqueue_script( 'enquire', '//cdnjs.cloudflare.com/ajax/libs/enquire.js/2.1.2/enquire.min.js', array(), '20150804', true );
-
-	} // login_scripts()
-
-
-
 
 	/**
 	 * Add core editor buttons that are disabled by default
@@ -322,6 +319,28 @@ class decatur_2015_Actions_and_Filters {
 	} // analytics_code()
 
 	/**
+	 * Sets the async attribute on all script tags.
+	 */
+	public function async_scripts( $tag, $handle ) {
+
+		if ( is_admin() ) { return $tag; }
+
+		$prefix = 'decatur-2015-';
+		$check = strpos( $handle, $prefix );
+		$count = strlen( $prefix );
+
+
+
+		if ( 'FALSE' === $check || 0 < $check ) { return $tag; }
+
+		echo '<pre>'; print_r( $check ); echo '</pre>';
+		echo '<pre>'; print_r( $count ); echo '</pre>';
+
+		return str_replace( ' src', ' async="async" src', $tag );
+
+	} // async_scripts()
+
+	/**
 	 * Creates a style tag in the header with the background image
 	 *
 	 * @return 		void
@@ -337,7 +356,7 @@ class decatur_2015_Actions_and_Filters {
 
 		if ( ! is_singular( 'employee' ) && ! is_singular( 'post' ) ) {
 
-			$image = $decatur_2015_themekit->get_thumbnail_url( get_the_ID(), 'full' );
+			$image = $decatur_2015_themekit->get_featured_images( get_the_ID() );
 
 		}
 
@@ -349,29 +368,26 @@ class decatur_2015_Actions_and_Filters {
 
 		if ( is_int( $image ) ) {
 
-			$images 	= wp_prepare_attachment_for_js( $image );
-
-			//showme( $images );
-
-			$image 		= $images['sizes']['full']['url'];
-			$supertiny 	= $images['sizes']['super-tiny']['url'];
+			$image 	= wp_prepare_attachment_for_js( $image );
 
 		}
 
+		$final 	= $image['sizes']['full']['url'];
+		$mobile = $image['sizes']['large']['url'];
 
-		if ( ! empty( $image ) || ! empty( $supertiny ) ) {
+		if ( ! empty( $final ) || ! empty( $mobile ) ) {
 
 			$output .= '<style>';
 
-			if ( ! empty( $supertiny ) ) {
+			if ( ! empty( $mobile ) ) {
 
-				$output .= '@media screen and (max-width:767px){.site-header{background-image:url(' . $supertiny . ');}';
+				$output .= '@media screen and (max-width:767px){.site-header{background-image:url(' . $mobile . ');}}';
 
 			}
 
-			if ( ! empty( $image ) ) {
+			if ( ! empty( $final ) ) {
 
-				$output .= '@media screen and (min-width:768px){.site-header{background-image:url(' . $image . ');}';
+				$output .= '@media screen and (min-width:768px){.site-header{background-image:url(' . $final . ');}}';
 
 			}
 
@@ -475,7 +491,69 @@ class decatur_2015_Actions_and_Filters {
 
 	} // disable_emojis()
 
+	/**
+	 * Enqueues scripts and styles for the admin
+	 */
+	public function enqueue_admin() {
 
+		wp_enqueue_style( 'decatur-2015-admin', get_stylesheet_directory_uri() . '/admin.css' );
+
+	} // enqueue_admin()
+
+	/**
+	 * Enqueues scripts and styles for the login page
+	 *
+	 * @return 	void
+	 */
+	public function enqueue_login() {
+
+		wp_enqueue_style( 'decatur-2015-login', get_stylesheet_directory_uri() . '/login.css', 10, 2 );
+		//wp_enqueue_script( 'enquire', '//cdnjs.cloudflare.com/ajax/libs/enquire.js/2.1.2/enquire.min.js', array(), '20150804', true );
+
+	} // enqueue_login()
+
+	/**
+	 * Enqueues scripts and styles for the front end
+	 */
+	public function enqueue_public() {
+
+		wp_enqueue_style( 'decatur-2015-style', get_stylesheet_uri() );
+
+		wp_enqueue_script( 'decatur-2015-public', get_stylesheet_directory_uri() . '/assets/js/public.min.js', array( 'jquery', 'enquire', 'jquery-ui-tabs' ), '20160822', true );
+
+		//wp_enqueue_script( 'decatur-2015-navigation', get_stylesheet_directory_uri() . '/js/navigation.min.js', array(), '20120206', true );
+
+		//wp_enqueue_script( 'decatur-2015-skip-link-focus-fix', get_stylesheet_directory_uri() . '/js/skip-link-focus-fix.min.js', array(), '20130115', true );
+
+		wp_enqueue_style( 'dashicons' );
+
+		wp_enqueue_script( 'enquire', '//cdnjs.cloudflare.com/ajax/libs/enquire.js/2.1.2/enquire.min.js', array(), '20150804', true );
+
+		//wp_enqueue_script( 'decatur-2015-search', get_template_directory_uri() . '/js/hidden-search.min.js', array( 'jquery' ), '20150807', true );
+
+		wp_enqueue_script( 'object-fit-images', get_stylesheet_directory_uri() . '/assets/js/ofi.min.js', array(), '20160525', true );
+
+		if ( ! is_main_site() ) {
+
+			wp_enqueue_script( 'decatur-2015-subsite-expand', get_stylesheet_directory_uri() . '/assets/js/subsite-expand.min.js', array( 'jquery', 'enquire' ), '20151020', true );
+
+		} else {
+
+			wp_enqueue_script( 'decatur-2015-mayor-city-mngr-expand-menu', get_stylesheet_directory_uri() . '/assets/js/mayor-city-mngr-expand-menu.min.js', array( 'jquery', 'enquire' ), '20151027', true );
+
+		}
+
+		//wp_enqueue_script( 'decatur-2015-main-menu-expand', get_stylesheet_directory_uri() . '/js/main-menu-expand.min.js', array( 'jquery', 'enquire' ), '20150807', true );
+
+		//wp_enqueue_script( 'decatur-2015-collapse', get_stylesheet_directory_uri() . '/js/collapse-submenus.min.js', array( 'jquery' ), '20150812', true );
+
+		//wp_enqueue_script( 'decatur-2015-tabs', get_stylesheet_directory_uri() . '/js/tabs.min.js', array( 'jquery', 'jquery-ui-tabs' ), '20151009', true );
+
+		//wp_enqueue_script( 'decatur-2015-open-submenu', get_stylesheet_directory_uri() . '/js/check-to-open-submenu.min.js', array( 'jquery', 'enquire' ), '20151014', true );
+
+		wp_enqueue_style( 'decatur-2015-fonts', $this->fonts_url(), array(), null );
+
+	} // enqueue_public()
 
 	/**
 	 * Limits excerpt length
@@ -575,6 +653,63 @@ class decatur_2015_Actions_and_Filters {
 	} // footer_logos()
 
 	/**
+	 * Returns an array of post objects that are parents of the given post object.
+	 * Reverses the order from get_post_ancestors so the oldest is now first in the array.
+	 *
+	 * @param 		obj 		$post 		Post object.
+	 * @return 		array 					An array of post objects.
+	 */
+	private function get_parents( $post ) {
+
+		if ( empty( $post ) || ! is_object( $post ) ) { return; }
+
+		$rents 		= get_post_ancestors( $post );
+		$rents 		= array_reverse( $rents );
+		$parents 	= array();
+
+		foreach ( $rents as $rent ) {
+
+			$parents[] = get_post( $rent );
+
+		}
+
+		return $parents;
+
+	} // get_parents()
+
+	/**
+	 * Returns the sidebar name for the given page slug.
+	 *
+	 * @param 		string 		$page 		Page slug.
+	 * @return 		string 					The sidebar name.
+	 */
+	private function get_sidebar_name( $page ) {
+
+		if ( empty( $page ) ) { return; }
+
+		$sidebar = '';
+
+		switch ( $page ) {
+
+			case 'city-administration': 	$sidebar = 'cityadmin'; break;
+			case 'city-clerk': 				$sidebar = 'cityclerk'; break;
+			case 'development-services': 	$sidebar = 'devservices'; break;
+			case 'finance': 				$sidebar = 'finance'; break;
+			case 'human-resources': 		$sidebar = 'hr'; break;
+			case 'licensing': 				$sidebar = 'licensing'; break;
+			case 'mayor-and-council': 		$sidebar = 'mayorcouncil'; break;
+			case 'public-works': 			$sidebar = 'publicworks'; break;
+			case 'purchasing': 				$sidebar = 'purchasing'; break;
+			case 'transit': 				$sidebar = 'transit'; break;
+			case 'water': 					$sidebar = 'water'; break;
+
+		} // switch
+
+		return $sidebar;
+
+	} // get_sidebar_name()
+
+	/**
 	 * Adds a link to the news page after home news section
 	 */
 	public function home_news_link() {
@@ -594,6 +729,17 @@ class decatur_2015_Actions_and_Filters {
 		?></a></div><?php
 
 	} // home_news_link()
+
+	/**
+	 * Initializes scripts in the footer.
+	 *
+	 * @return 		mixed 			Script tags.
+	 */
+	public function initialize_scripts() {
+
+		?><script>var sliderImages = document.querySelectorAll('img.soliloquy-image');objectFitImages(sliderImages);</script><?php
+
+	} // initialize_scripts()
 
 	/**
 	 * Converts the search input button to an HTML5 button element
@@ -758,6 +904,27 @@ class decatur_2015_Actions_and_Filters {
 	} // page_template_column_head()
 
 	/**
+	 * Displays the page title markup.
+	 */
+	public function page_title() {
+
+		?><header class="page-header contentpage"><?php
+
+			if ( ! is_front_page() ) {
+
+				the_title( '<h1 class="page-title">', '</h1>' );
+
+			} else {
+
+				?><h1 class="page-title"><?php echo get_bloginfo( 'name' ); ?></h1><?php
+
+			}
+
+		?></header><!-- .entry-header --><?php
+
+	} // page_title()
+
+	/**
 	 * Removes query strings from static resources
 	 * to increase Pingdom and GTMatrix scores.
 	 *
@@ -853,98 +1020,48 @@ class decatur_2015_Actions_and_Filters {
 	/**
 	 * Adds sidebars, depending on the page
 	 *
-	 * @return [type] [description]
+	 * If parents is empty or departments isn't the first parent, sidebar is the current post slug.
+	 * If the page is water-customer-service, sidebar is based on the referrer.
+	 * If the page is permits-and-forms, sidebar is based on the referrer.
+	 * Otherwise, sidebar is the second parent post slug.
 	 */
 	public function sidebars_pages() {
 
 		global $post;
 
-		if( 'page' === get_post_type( $post ) ) {
+		if ( 'page' !== get_post_type( $post ) ) { return; }
 
-			$rents = get_post_ancestors( $post );
+		$parents = $this->get_parents( $post );
 
-			$parents = array();
+		//echo '<pre>'; print_r( $parents ); echo '</pre>';
 
-			foreach ( $rents as $rent ) {
+		if ( is_page( 'water-customer-service' ) ) {
 
-				$parents[] = get_post( $rent );
+			$referer = wp_get_referer();
+			$sidebar = ( strpos( $referer, '/city-administration/' ) ? 'cityadmin' : 'water' );
+
+		} elseif ( is_page( 'permits-and-forms' ) ) {
+
+			$referer = wp_get_referer();
+
+			if ( strpos( $referer, '/development-services/' ) ) {
+
+				$sidebar = 'devservices';
 
 			}
 
-			if ( empty( $parents ) ) {
+		} elseif ( empty( $parents ) || ( 'departments' === $parents[0]->post_name && ! isset( $parents[1] ) ) ) {
 
-				switch ( $post->post_name ) {
+			$sidebar = $this->get_sidebar_name( $post->post_name );
 
-					case 'city-administration': 	$sidebar = 'cityadmin'; break;
-					case 'development-services': 	$sidebar = 'devservices'; break;
-					case 'human-resources': 		$sidebar = 'hr'; break;
-					case 'mayor-and-council': 		$sidebar = 'mayorcouncil'; break;
-					case 'public-works': 			$sidebar = 'publicworks'; break;
-					case 'transit': 				$sidebar = 'transit'; break;
-					case 'water': 					$sidebar = 'water'; break;
+		} elseif ( 'mayor-and-council' === $parents[0]->post_name && ! isset( $parents[1] ) ) {
 
-				} // switch
+			$sidebar = $this->get_sidebar_name( $parents[0]->post_name );
 
-			} elseif ( is_page( 'water-customer-service' ) ) {
+		} else {
 
-				$referer = wp_get_referer();
+			$sidebar = $this->get_sidebar_name( $parents[1]->post_name );
 
-				if ( strpos( $referer, '/city-administration/' ) ) {
-
-					$sidebar = 'cityadmin';
-
-				} else {
-
-					$sidebar = 'water';
-
-				}
-
-			} elseif ( is_page( 'permits-and-forms' ) ) {
-
-				$referer = wp_get_referer();
-
-				if ( strpos( $referer, '/development-services/' ) ) {
-
-					$sidebar = 'devservices';
-
-				}
-
-			} else {
-
-				foreach ( $parents as $parent ) {
-
-					if ( 'departments' === $parent->post_name ) {
-
-						switch ( $post->post_name ) {
-
-							case 'city-administration': 	$sidebar = 'cityadmin'; break;
-							case 'development-services': 	$sidebar = 'devservices'; break;
-							case 'human-resources': 		$sidebar = 'hr'; break;
-							case 'mayor-and-council': 		$sidebar = 'mayorcouncil'; break;
-							case 'public-works': 			$sidebar = 'publicworks'; break;
-							case 'transit': 				$sidebar = 'transit'; break;
-							case 'water': 					$sidebar = 'water'; break;
-
-						} // switch
-
-					} else {
-
-						switch ( $parent->post_name ) {
-
-							case 'city-administration': 	$sidebar = 'cityadmin'; break;
-							case 'development-services': 	$sidebar = 'devservices'; break;
-							case 'human-resources': 		$sidebar = 'hr'; break;
-							case 'mayor-and-council': 		$sidebar = 'mayorcouncil'; break;
-							case 'public-works': 			$sidebar = 'publicworks'; break;
-							case 'transit': 				$sidebar = 'transit'; break;
-							case 'water': 					$sidebar = 'water'; break;
-
-						} // switch
-
-					}
-
-				} // foreach
-			}
 		}
 
 		if ( empty( $sidebar ) ) { return; }

@@ -1,0 +1,91 @@
+.soliloquy-image {
+	object-fit: cover;
+	font-family: 'object-fit: cover;';
+}
+
+.soliloquy-outer-container {
+	display 	: none;
+	position 	: relative !important;
+
+	@media only screen and (min-width: $bp__real_menu_button + 1) {
+		display : block;
+	}
+}
+
+.soliloquy-container {
+	margin-bottom: 0 !important;
+
+	.soliloquy-caption {
+		top 		: 50% !important;
+		transform 	: translateY(-50%);
+		transition 	: transform $trans__default;
+
+		.open-dept & {
+			transform: translateY(-80%) !important;
+		}
+
+		.soliloquy-caption-inside {
+			background 	: transparent !important;
+			font-size 	: 3.5em !important;
+
+			a {
+				text-shadow 	: 3px 3px 0px rgba( 02, 02, 02, 0.5 );
+			}
+		}
+	}
+
+	.link-caption{
+		top 		: 50% !important;
+		transform 	: translateY(-50%);
+	}
+}
+
+
+
+// This was all entered as custom styles in Soliloquy.
+//
+// .soliloquy-outer-container {
+// 	display: none;
+//
+// 	@media only screen and (min-width:681px) {
+// 		.soliloquy-outer-container {
+// 			display : block;
+// 			height 	: 645px;
+// 			position: absolute;
+// 			top:0;
+// 			width 	: 100% !important;
+// 		}
+// 	}
+// }
+//
+// .soliloquy-container {
+// 	height: 645px !important;
+//
+// 	.soliloquy-item {
+// 		height: 645px !important;
+// 	}
+//
+// 	.soliloquy-image {
+// 		width: 100% !important;
+// 		height: 645px !important;
+// 	}
+//
+// 	.soliloquy-caption {
+// 		top: 50% !important;
+// 		transform: translateY(-50%);
+//
+// 		.soliloquy-caption-inside {
+// 			background:transparent !important;
+// 			font-size:3.5em !important;
+//
+// 			a {
+// 				text-shadow:3px 3px 0px rgba( 02, 02, 02, 0.5 );
+// 			}
+// 		}
+// 	}
+//
+// 	.link-caption{
+// 		top:50% !important;
+// 		transform:translateY(-50%);
+// 	}
+// }

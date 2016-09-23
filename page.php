@@ -15,19 +15,6 @@
 get_header();
 
 ?><div class="wrap wrap-content sidebar-content">
-	<header class="page-header contentpage"><?php
-
-		if ( ! is_front_page() ) {
-
-			the_title( '<h1 class="page-title">', '</h1>' );
-
-		} else {
-
-			?><h1 class="page-title"><?php echo get_bloginfo( 'name' ); ?></h1><?php
-
-		}
-
-	?></header><!-- .entry-header -->
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main"><?php
 

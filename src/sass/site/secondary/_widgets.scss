@@ -1,0 +1,156 @@
+.widget-area {
+	overflow 	: auto;
+	padding 	: 1em;
+	width 		: 100%;
+
+	// .gksm-custom-menu-widget {
+	// 	.widget-title {
+	// 		display: none;
+	// 	}
+	// }
+}
+
+.widget {
+	margin: 0 0 1em;
+
+	// Make sure select elements fit in widgets
+	select {
+		max-width: 100%;
+	}
+
+	.widget-title {
+		border-bottom 	: 1px solid $red;
+		font-weight 	: 400;
+		margin-bottom 	: 0.5em;
+		padding-bottom 	: 0.5em;
+	}
+}
+
+// Search widget
+.widget_search {
+
+	.search-submit {
+		display: none;
+	}
+
+	.search-field {
+		width: 98.5%;
+	}
+}
+
+aside.social,
+aside.social-notitle {
+
+	ul {
+		@extend %listreset;
+		display 		: flex;
+		justify-content : center;
+
+		li {
+			margin: 0 0.65em;
+
+			svg {
+				fill 	: $charcoal;
+				height 	: 48px;
+				width 	: 48px;
+			}
+		}
+	}
+
+	a {
+		transition: $trans__default;
+
+		&:hover {
+			svg {
+				fill 	: $red;
+				filter 	: drop-shadow( 0px 0px 2px $yellow );
+			}
+		}
+	}
+}
+
+aside.news {
+	.link-news {
+		margin-top: 1.5em;
+	}
+}
+
+aside.social-notitle {
+	ul {
+		justify-content : left;
+
+		li svg {
+			height 	: 36px;
+			width 	: 36px;
+		}
+	}
+}
+
+aside.mailinglist,
+aside.publicinfo,
+aside.infoaz,
+aside.map,
+aside.video {
+
+	a {
+		@include unline( $light );
+	}
+
+	.widget-title {
+		background-color: $red;
+		border-bottom 	: none;
+		color 			: $light;
+		font-size 		: 1em;
+		margin 			: 0;
+		padding 		: 0.5em 1em;
+	}
+}
+
+aside.question {
+
+	a {
+		@include unline( $light );
+	}
+
+	.widget-title {
+		background-color: $charcoal;
+		border-bottom 	: none;
+		font-size 		: 1em;
+		padding 		: 0.5em 1em;
+		text-transform 	: uppercase;
+	}
+}
+
+aside.quicklinks,
+.widget_recent_entries,
+.widget_ultimate_posts {
+
+	ul {
+		@extend %listreset;
+	}
+
+	li {
+		padding: 0.5em 0;
+	}
+
+	a {
+		@include unline( $red );
+	}
+
+	p {
+		margin: 0;
+	}
+}
+
+aside.cityseal {
+	text-align: center;
+
+	img {
+		max-height 	: 180px;
+		max-width 	: 180px !important;
+	}
+}
+
+aside.connect {
+	margin-bottom: 0.5em;
+}

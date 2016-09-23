@@ -1,0 +1,15 @@
+/**
+ * Custom styling for the admin
+ */
+
+@import "variables-site/vars";
+@import "mixins/mixins";
+
+.wp-admin {
+
+	.admin-notes {
+		box-sizing 	: border-box;
+		font-weight : 600;
+		width 		: 100%;
+	}
+}

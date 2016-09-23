@@ -15,21 +15,24 @@
 
 	do_action( 'tha_entry_top' );
 
-	?><header class="entry-header justcontent"><?php
+	/*?><div class="wrap-entry-content"><?php */
+		?><header class="entry-header justcontent"><?php
 
-		the_title( sprintf( '<h3 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h3>' );
+			the_title( sprintf( '<h3 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h3>' );
 
-	?></header><!-- .entry-header --><?php
+		?></header><!-- .entry-header --><?php
 
-	do_action( 'tha_entry_content_before' );
+		do_action( 'tha_entry_content_before' );
 
-	?><div class="entry-content"><?php
+		?><div class="entry-content"><?php
 
-			the_excerpt();
+				the_excerpt();
 
-	?></div><!-- .entry-content --><?php
+		?></div><!-- .entry-content --><?php
 
-	do_action( 'tha_entry_content_after' );
+		do_action( 'tha_entry_content_after' );
+
+	/*?></div><?php*/
 
 	do_action( 'tha_entry_bottom' );
 

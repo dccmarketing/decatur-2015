@@ -1,0 +1,4 @@
+[07-Jul-2016 14:09:13 CST6CDT] PHP Fatal error:  Uncaught Error: Call to undefined function get_header() in /home/citydcc1/public_html/wp-content/themes/decatur-2015/index.php:15
+Stack trace:
+#0 {main}
+  thrown in /home/citydcc1/public_html/wp-content/themes/decatur-2015/index.php on line 15
