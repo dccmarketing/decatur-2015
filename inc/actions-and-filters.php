@@ -53,6 +53,8 @@ class decatur_2015_Actions_and_Filters {
 		add_filter( 'wpseo_breadcrumb_links', array( $this, 'subsite_home_page' ) );
 		add_filter( 'sm-location-cpt-args', array( $this, 'add_location_image' ) );
 
+		add_action( 'admin_init', array( $this, 'add_editor_caps' ) );
+
 		add_action( 'tha_body_top', array( $this, 'analytics_code' ) );
 
 		add_action( 'tha_header_top', array( $this, 'site_header_top' ) );
@@ -235,7 +237,7 @@ class decatur_2015_Actions_and_Filters {
 	/**
 	 * Add core editor buttons that are disabled by default
 	 */
-	function add_editor_buttons( $buttons ) {
+	public function add_editor_buttons( $buttons ) {
 
 		$buttons[] = 'superscript';
 		$buttons[] = 'subscript';
@@ -243,6 +245,17 @@ class decatur_2015_Actions_and_Filters {
 		return $buttons;
 
 	} // add_editor_buttons()
+
+	/**
+	 * Allows Editors to change menus and other theme settings.
+	 */
+	public function add_editor_caps() {
+
+		$role = get_role( 'editor' );
+
+		$role->add_cap( 'edit_theme_options' ); 
+
+	} // add_editor_caps()
 
 	/**
 	 * Adds a hidden search field
