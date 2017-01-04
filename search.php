@@ -10,13 +10,6 @@
 get_header();
 
 ?><div class="wrap wrap-content sidebar-content">
-	<header class="page-header contentpage">
-		<h1 class="page-title"><?php
-
-			printf( esc_html__( 'Search Results for: %s', 'decatur-2015' ), '<span>' . get_search_query() . '</span>' );
-
-		?></h1>
-	</header><!-- .entry-header -->
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main"><?php
 

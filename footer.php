@@ -9,6 +9,8 @@
  * @package Decatur_2015
  */
 
+$mods = get_theme_mods();
+
 global $decatur_2015_themekit;
 
 		do_action( 'tha_content_bottom' );
@@ -34,44 +36,34 @@ global $decatur_2015_themekit;
 							?></a>
 						</li><?php
 
-						$addy1 = get_theme_mod( 'address_1' );
+						if ( ! empty( $mods['address_1'] ) ) {
 
-						if ( ! empty( $addy1 ) ) {
-
-							?><li class="address1"><?php echo esc_html( $addy1, 'decatur-2015' ); ?></li><?php
+							?><li class="address1"><?php echo esc_html( $mods['address_1'] ); ?></li><?php
 
 						}
 
-						$addy2 = get_theme_mod( 'address_2' );
+						if ( ! empty( $mods['address_2'] ) ) {
 
-						if ( ! empty( $addy2 ) ) {
-
-							?><li class="address2"><?php echo esc_html( $addy2, 'decatur-2015' ); ?></li><?php
+							?><li class="address2"><?php echo esc_html( $mods['address_2'] ); ?></li><?php
 
 						}
 
-						$city 	= get_theme_mod( 'city' );
-						$state 	= get_theme_mod( 'us_state' );
-						$zip 	= get_theme_mod( 'zip_code' );
-
-						if ( ! empty( $city ) && ! empty( $state ) && ! empty( $zip ) ) {
+						if ( ! empty( $mods['city'] ) && ! empty( $mods['us_state'] ) && ! empty( $mods['zip_code'] ) ) {
 
 							?><li>
-								<span class="city"><?php echo esc_html( $city, 'decatur-2015' ) . ', '; ?></span>
-								<span class="state"><?php echo esc_html( $state, 'decatur-2015' ) . ' '; ?></span>
-								<span class="zip"><?php echo esc_html( $zip, 'decatur-2015' ); ?></span>
+								<span class="city"><?php echo esc_html( $mods['city'] ) . ', '; ?></span>
+								<span class="state"><?php echo esc_html( $mods['us_state'] ) . ' '; ?></span>
+								<span class="zip"><?php echo esc_html( $mods['zip_code'] ); ?></span>
 							</li><?php
 
 						}
 
-						$phone = get_theme_mod( 'phone_number' );
-
-						if ( ! empty( $phone ) ) {
+						if ( ! empty( $mods['phone_number'] ) ) {
 
 							?><li class="phone-number"><?php
 
 								esc_html_e( 'Phone: ', 'decatur-2015' );
-								echo $decatur_2015_themekit->make_phone_link( $phone );;
+								echo $decatur_2015_themekit->make_phone_link( $mods['phone_number'] );
 
 							?></li><?php
 
@@ -81,7 +73,7 @@ global $decatur_2015_themekit;
 				</div>
 				<div class="credits"><?php printf( esc_html__( 'Site design and developed by %1$s', 'decatur-2015' ), '<a href="https://dccmarketing.com/" target="_blank">DCC Marketing</a>' ); ?></div>
 				<div class="link-ada">
-					<a href="<?php echo esc_url( get_theme_mod( 'ada_link_url' ) ); ?>" id="ada-link-text"><?php echo esc_html( get_theme_mod( 'ada_link_text' ) ); ?></a>
+					<a href="<?php echo esc_url( $mods['ada_link_url'] ); ?>" id="ada-link-text"><?php echo esc_html( $mods['ada_link_text'] ); ?></a>
 				</div>
 			</div><!-- .site-info -->
 		</div><!-- .wrap-footer --><?php

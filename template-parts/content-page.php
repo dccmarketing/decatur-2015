@@ -11,12 +11,6 @@
 
 	do_action( 'tha_entry_top' );
 
-	/*?><header class="page-header contentpage"><?php
-
-		the_title( '<h1 class="page-title">', '</h1>' );
-
-	?></header><!-- .entry-header --><?php*/
-
 	do_action( 'tha_entry_content_before' );
 
 	?><div class="page-content"><?php

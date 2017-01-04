@@ -32,11 +32,11 @@
 		var target = getEventTarget( event );
 		var menuItem = this;
 
-		event.preventDefault();
-		event.stopPropagation();
-		event.cancelBubble = true;
-
 		if ( target.matches( '.show-hide' ) ) {
+
+			event.preventDefault();
+			event.stopPropagation();
+			event.cancelBubble = true;
 
 			var submenu = menuItem.querySelector( '.sub-menu' );
 

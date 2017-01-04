@@ -605,6 +605,7 @@ class decatur_2015_Menukit {
 
 		global $post;
 
+		if ( ! is_object( $post ) ) { return $classes; }
 		if ( 'water-customer-service' !== $post->post_name ) { return $classes; }
 
 		$referer = wp_get_referer();

@@ -67,6 +67,8 @@ class decatur_2015_Actions_and_Filters {
 		add_action( 'tha_content_bottom', array( $this, 'footer_logos' ) );
 
 		add_action( 'tha_content_while_before', array( $this, 'page_title' ) );
+		add_action( 'tha_content_while_before', array( $this, 'title_news' ) );
+		add_action( 'tha_content_while_before', array( $this, 'title_search' ) );
 
 		add_action( 'tha_content_while_after', array( $this, 'home_news_link' ) );
 
@@ -918,8 +920,12 @@ class decatur_2015_Actions_and_Filters {
 
 	/**
 	 * Displays the page title markup.
+	 *
+	 * @hooked 		tha_content_while_before
 	 */
 	public function page_title() {
+
+		if ( ! is_page() ) { return; }
 
 		?><header class="page-header contentpage"><?php
 
@@ -936,6 +942,44 @@ class decatur_2015_Actions_and_Filters {
 		?></header><!-- .entry-header --><?php
 
 	} // page_title()
+	
+	/**
+	 * Displays the news page title markup.
+	 *
+	 * @hooked 		tha_content_while_before
+	 */
+	public function title_news() {
+		
+		if ( ! is_home() ) { return; }
+
+		?><header class="page-header contentpage"><?php
+
+			$posts_page = get_option( 'page_for_posts' );
+			$title 		= get_the_title( $posts_page );
+	
+			?><h1 class="page-title"><?php echo esc_html( $title ); ?></h1>
+		</header><!-- .entry-header --><?php
+		
+	} // title_news()
+
+	/**
+	 * Displays the search title markup.
+	 *
+	 * @hooked 		tha_content_while_before
+	 */
+	public function title_search() {
+
+		if ( ! is_search() ) { return; }
+
+		?><header class="page-header contentpage">
+			<h1 class="page-title"><?php
+
+				printf( esc_html__( 'Search Results for: %s', 'decatur-2015' ), '<span>' . get_search_query() . '</span>' );
+
+			?></h1>
+		</header><!-- .entry-header --><?php
+
+	} // title_search()
 
 	/**
 	 * Removes query strings from static resources
