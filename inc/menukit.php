@@ -110,10 +110,14 @@ class decatur_2015_Menukit {
 
 		$title = sanitize_title( $menu_item->title );
 
-		if ( empty( $menu_item->classes ) || ! in_array( $title, $menu_item->classes ) ) {
+		if ( empty( $menu_item->classes ) || ! is_array( $menu_item->classes ) ) {
 
+			$menu_item->classes[0] = $title;
+
+		} elseif ( ! in_array( $title, $menu_item->classes ) ) {
+			
 			$menu_item->classes[] = $title;
-
+			
 		}
 
 		return $menu_item;
